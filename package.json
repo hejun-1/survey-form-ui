@@ -4,7 +4,8 @@
   "description": "Web UI for RenAi Survey System",
   "main": "bundle.js",
   "scripts": {
-    "test": "webpack-dev-server"
+    "dev": "webpack-dev-server",
+    "build": "webpack"
   },
   "author": "RenAi Dev Team",
   "dependencies": {

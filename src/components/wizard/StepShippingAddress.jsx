@@ -1,5 +1,6 @@
 import React from 'react';
 import $ from 'jquery';
+import endpoint from '../../backend';
 
 class StepShippingAddress extends React.PureComponent {
   constructor(props) {
@@ -16,7 +17,11 @@ class StepShippingAddress extends React.PureComponent {
   }
 
   getVerifyCode() {
-    console.log('getVerifyCode');
+    $.ajax({
+      url: `${endpoint}/surveys/${this.mobile}/verifycode`,
+      type: 'GET',
+      complete: (data) => {}
+    });
   }
 
   onPhoneChange(event) {
@@ -41,13 +46,13 @@ class StepShippingAddress extends React.PureComponent {
     }
     return new Promise((resolve, reject) => {
       $.ajax({
-        url: 'http://0.0.0.0:9190/surveys',
+        url: `${endpoint}/surveys?verifyCode=${this.verifyCode}`,
         data: JSON.stringify(this.props.getStore()),
         contentType: 'application/json; charset=utf-8',
         dataType: 'json',
         type: 'POST',
         complete: (data) => {
-          if (data != '验证码错误') {
+          if (data.responseText != '验证码错误') {
             resolve();
           } else {
             reject();

@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const ENDPOINT = process.env.ENDPOINT || 'http://0.0.0.0:9190/api';
 
 module.exports = {
   devtool: 'eval-source-map',
@@ -13,6 +14,11 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx']
   },
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env.ENDPOINT': JSON.stringify(ENDPOINT)
+    }),
+  ],
   module: {
     loaders: [
       {

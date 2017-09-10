@@ -1,6 +1,7 @@
 import React from 'react';
 import {Uploader} from 'react-file-upload';
 import {FileUploader} from '../file-uploader';
+import endpoint from '../../backend';
 
 class StepUploadPicture extends React.PureComponent {
   constructor(props) {
@@ -34,7 +35,7 @@ class StepUploadPicture extends React.PureComponent {
                 <h2>第三步: 上传检测结果照片</h2>
               </label>
               <div className="wizard-card wizard-scroll-container">
-                <FileUploader onSuccess={this.onSuccess} onError={this.onError} uploadUrl={"http://0.0.0.0:9190/pictures"}/>
+                <FileUploader onSuccess={this.onSuccess} onError={this.onError} uploadUrl={`${endpoint}/pictures`}/>
               </div>
             </div>
           </div>
