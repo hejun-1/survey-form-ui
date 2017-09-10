@@ -1,5 +1,4 @@
 import React from 'react';
-import { TextArea } from 'semantic-ui-react';
 
 class Question extends React.PureComponent {
   constructor(props) {

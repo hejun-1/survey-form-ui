@@ -8,8 +8,6 @@
   },
   "author": "RenAi Dev Team",
   "dependencies": {
-    "joi": "^10.6.0",
-    "joi-validation-strategy": "^0.3.3",
     "react": "^15.4.2",
     "react-checkbox-group": "^3.3.1",
     "react-dom": "^15.4.2",
@@ -17,10 +15,8 @@
     "react-redux": "^5.0.2",
     "react-router": "^4.2.0",
     "react-stepzilla": "^4.6.3",
-    "react-validation-mixin": "^5.4.0",
     "react-wizard-form": "^1.2.11",
-    "redux": "^3.6.0",
-    "semantic-ui-react": "^0.72.0"
+    "redux": "^3.6.0"
   },
   "devDependencies": {
     "babel": "^6.23.0",
