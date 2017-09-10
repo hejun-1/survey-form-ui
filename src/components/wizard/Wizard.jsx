@@ -5,20 +5,14 @@ import StepSurvey from './StepSurvey';
 import StepUploadPicture from './StepUploadPicture';
 import StepShippingAddress from './StepShippingAddress';
 import Step3 from './Step3';
-import Step4 from './Step4';
-import Step5 from './Step5';
-import Step6 from './Step6';
 import './Wizard.css';
 
 class Wizard extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {};
-
-    this.sampleStore = {
-      email: '',
-      gender: '',
-      savedToCloud: false
+    this.surveyStore = {
+      serviceUrl: 'http://0.0.0.0/'
     };
   }
 
@@ -27,12 +21,12 @@ class Wizard extends React.PureComponent {
   componentWillUnmount() {}
 
   getStore() {
-    return this.sampleStore;
+    return this.surveyStore;
   }
 
   updateStore(update) {
-    this.sampleStore = {
-      ...this.sampleStore,
+    this.surveyStore = {
+      ...this.surveyStore,
       ...update,
     }
   }
@@ -45,9 +39,6 @@ class Wizard extends React.PureComponent {
         {name: '3', component: <StepUploadPicture getStore={() => (this.getStore())} updateStore={(u) => {this.updateStore(u)}} />},
         {name: '4', component: <StepShippingAddress getStore={() => (this.getStore())} updateStore={(u) => {this.updateStore(u)}} />},
         {name: '5', component: <Step3 getStore={() => (this.getStore())} updateStore={(u) => {this.updateStore(u)}} />},
-        //{name: 'step4', component: <Step4 getStore={() => (this.getStore())} updateStore={(u) => {this.updateStore(u)}} />},
-        //{name: 'Step5', component: <Step5 getStore={() => (this.getStore())} updateStore={(u) => {this.updateStore(u)}} />},
-        //{name: 'Step6', component: <Step6 getStore={() => (this.getStore())} updateStore={(u) => {this.updateStore(u)}} />}
       ]
 
     return (

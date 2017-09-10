@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class StepShippingAddress extends React.PureComponent {
+class StepShippingAddress extends React.PureComponent {
   constructor(props) {
     super(props);
     this.getVerifyCode = this.getVerifyCode.bind(this);
@@ -9,9 +9,7 @@ export default class StepShippingAddress extends React.PureComponent {
     this.onVerifyCodeChange = this.onVerifyCodeChange.bind(this);
   }
 
-  onVerifyCodeChange() {
-
-  }
+  onVerifyCodeChange() {}
 
   getVerifyCode() {
     console.log('getVerifyCode');
@@ -67,3 +65,10 @@ export default class StepShippingAddress extends React.PureComponent {
     )
   }
 }
+
+StepShippingAddress.PropTypes = {
+  getStore: React.PropTypes.func,
+  updateStore: React.PropTypes.func
+};
+
+export default StepShippingAddress;

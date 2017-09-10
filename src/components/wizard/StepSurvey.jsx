@@ -1,13 +1,15 @@
 import React from 'react';
 import { Form } from '../survey-forms/standard-form';
 
-export default class StepSurvey extends React.Component {
+class StepSurvey extends React.PureComponent {
   constructor(props) {
     super(props);
   }
 
   isValidated() {
-    return true;
+    return new Promise((resolve, reject) => {
+      setTimeout(() => resolve(), 2000);
+    });
   }
 
   render() {
@@ -35,3 +37,10 @@ export default class StepSurvey extends React.Component {
     )
   }
 }
+
+StepSurvey.PropTypes = {
+  getStore: React.PropTypes.func,
+  updateStore: React.PropTypes.func
+};
+
+export default StepSurvey;

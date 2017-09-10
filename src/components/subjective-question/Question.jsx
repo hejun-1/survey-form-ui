@@ -8,7 +8,7 @@ class Question extends React.PureComponent {
   }
 
   onChange(event, data) {
-    console.log(event);
+    console.log(event.target.value);
   }
 
   render() {

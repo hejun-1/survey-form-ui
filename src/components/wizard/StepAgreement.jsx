@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Checkbox, CheckboxGroup } from 'react-checkbox-group';
 
-export default class StepAgreement extends Component {
+class StepAgreement extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
@@ -11,13 +11,19 @@ export default class StepAgreement extends Component {
   }
 
   onSelect(values) {
+    const agree = values.length > 0 ? values[0] : false;
+
     this.setState({
-      agree: values.length > 0 ? values[0] : null
+      agree: agree
+    });
+
+    this.props.updateStore({
+      agree
     });
   }
 
   isValidated() {
-    return this.state.agree !== null;
+    return this.state.agree !== false;
   }
 
   render() {
@@ -100,3 +106,10 @@ export default class StepAgreement extends Component {
     )
   }
 }
+
+StepAgreement.PropTypes = {
+  getStore: React.PropTypes.func,
+  updateStore: React.PropTypes.func
+};
+
+export default StepAgreement;

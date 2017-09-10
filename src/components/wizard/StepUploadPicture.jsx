@@ -1,7 +1,7 @@
 import React from 'react';
 import {Uploader} from 'react-file-upload';
 
-export default class StepUploadPicture extends React.PureComponent {
+class StepUploadPicture extends React.PureComponent {
   constructor(props) {
     super(props);
     this.onError = this.onError.bind(this);
@@ -47,3 +47,10 @@ export default class StepUploadPicture extends React.PureComponent {
     )
   }
 }
+
+StepUploadPicture.PropTypes = {
+  getStore: React.PropTypes.func,
+  updateStore: React.PropTypes.func
+};
+
+export default StepUploadPicture;
