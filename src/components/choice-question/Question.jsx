@@ -8,25 +8,13 @@ class Question extends React.PureComponent {
     this.state = { values: [] };
     this.onSelect = this.onSelect.bind(this);
     this.onCustomValueChange = this.onCustomValueChange.bind(this);
-    this.updateModel = this.updateModel.bind(this);
-    this.updateModel(null);
+    this.props.onChange({ question: this.props.label, value: null, values: null});
   }
 
   onCustomValueChange(event) {
     this.state = { values: [] };
     const value = event.target.value;
-    this.props.model[this.props.dataIndex] = {
-      question: this.props.label,
-      value
-    };
-  }
-
-  updateModel(choices) {
-    this.props.model[this.props.dataIndex] = {
-      question: this.props.label,
-      values: choices,
-      value: choices ? choices.toString() : null
-    };
+    this.props.onChange({ question: this.props.label, value: value, values: null});
   }
 
   onSelect(choices) {
@@ -37,7 +25,7 @@ class Question extends React.PureComponent {
       values: choices
     });
 
-    this.updateModel(choices);
+    this.props.onChange({ question: this.props.label, value: choices.toString(), values: choices});
   }
 
   render() {
@@ -65,9 +53,8 @@ Question.PropTypes = {
   options: React.PropTypes.array.required,
   label: React.PropTypes.string.required,
   multiple: React.PropTypes.bool,
-  model: React.PropTypes.object.required,
-  dataIndex: React.PropTypes.string.required,
-  enableCustomValue: React.PropTypes.bool
+  enableCustomValue: React.PropTypes.bool,
+  onChange: React.PropTypes.func.required
 };
 
 export default Question

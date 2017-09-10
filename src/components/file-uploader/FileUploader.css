@@ -1,0 +1,14 @@
+.upload-btn {
+    font-size: 4em;
+    color: darkgray;
+    cursor: pointer;
+}
+
+.upload-file-input {
+    visibility: hidden;
+}
+
+.upload-preview {
+    width: 80%;
+    height: 80%;
+}

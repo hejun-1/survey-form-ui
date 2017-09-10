@@ -7,9 +7,7 @@ class StepSurvey extends React.PureComponent {
   }
 
   isValidated() {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => resolve(), 2000);
-    });
+    return true;
   }
 
   render() {

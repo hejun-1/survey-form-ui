@@ -4,23 +4,12 @@ class Question extends React.PureComponent {
   constructor(props) {
     super(props);
     this.onChange = this.onChange.bind(this);
-    this.updateModel = this.updateModel.bind(this);
-    this.updateModel(null);
-  }
-
-  updateModel(value) {
-    this.props.model[this.props.dataIndex] = {
-      question: this.props.label,
-      value
-    };
+    this.props.onChange({ question: this.props.label, value: null });
   }
 
   onChange(event) {
     const value = event.target.value;
-    this.props.model[this.props.dataIndex] = {
-      question: this.props.label,
-      value
-    };
+    this.props.onChange({ question: this.props.label, value: value });
   }
 
   render() {
@@ -35,8 +24,7 @@ class Question extends React.PureComponent {
 
 Question.PropTypes = {
   label: React.PropTypes.string.required,
-  model: React.PropTypes.object.required,
-  dataIndex: React.PropTypes.string.required
+  onChange: React.PropTypes.func.required
 };
 
 export default Question

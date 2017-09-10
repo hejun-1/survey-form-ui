@@ -18,12 +18,12 @@ class StepAgreement extends React.PureComponent {
     });
 
     this.props.updateStore({
-      agree
+      agreement: agree
     });
   }
 
   isValidated() {
-    return this.state.agree !== false;
+    return this.state.agree;
   }
 
   render() {

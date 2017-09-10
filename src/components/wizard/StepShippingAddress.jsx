@@ -1,4 +1,5 @@
 import React from 'react';
+import $ from 'jquery';
 
 class StepShippingAddress extends React.PureComponent {
   constructor(props) {
@@ -9,22 +10,51 @@ class StepShippingAddress extends React.PureComponent {
     this.onVerifyCodeChange = this.onVerifyCodeChange.bind(this);
   }
 
-  onVerifyCodeChange() {}
+  onVerifyCodeChange(event) {
+    const verifyCode = event.target.value;
+    this.verifyCode = verifyCode;
+  }
 
   getVerifyCode() {
     console.log('getVerifyCode');
   }
 
-  onPhoneChange() {
-    console.log('onPhoneChange');
+  onPhoneChange(event) {
+    const mobile = event.target.value;
+    this.props.updateStore({
+      mobile
+    });
+    this.mobile = mobile;
   }
 
-  onAddressChange() {
-    console.log('onAddressChange');
+  onAddressChange(event) {
+    const shippingAddress = event.target.value;
+    this.props.updateStore({
+      shippingAddress
+    });
+    this.shippingAddress = shippingAddress;
   }
 
   isValidated() {
-    return true;
+    if (!this.shippingAddress || !this.mobile || !this.verifyCode) {
+      return false;
+    }
+    return new Promise((resolve, reject) => {
+      $.ajax({
+        url: 'http://0.0.0.0:9190/surveys',
+        data: JSON.stringify(this.props.getStore()),
+        contentType: 'application/json; charset=utf-8',
+        dataType: 'json',
+        type: 'POST',
+        complete: (data) => {
+          if (data != '验证码错误') {
+            resolve();
+          } else {
+            reject();
+          }
+        }
+      });
+    });
   }
 
   render() {
