@@ -1,0 +1,10 @@
+.choice-other-label {
+  float: left;
+  margin: 0.3em 0.5em 0em 0em;
+}
+
+.choice-other-field {
+  width:75%;
+  display: inline-block;
+  float: left;
+}

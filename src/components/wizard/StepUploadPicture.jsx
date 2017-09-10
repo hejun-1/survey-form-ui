@@ -6,6 +6,7 @@ class StepUploadPicture extends React.PureComponent {
     super(props);
     this.onError = this.onError.bind(this);
     this.onSuccess = this.onSuccess.bind(this);
+    console.log(this.props.getStore());
   }
 
   componentDidMount() {
