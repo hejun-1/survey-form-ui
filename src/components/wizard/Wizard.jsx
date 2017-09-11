@@ -14,10 +14,6 @@ class Wizard extends React.PureComponent {
     this.surveyStore = {};
   }
 
-  componentDidMount() {}
-
-  componentWillUnmount() {}
-
   getStore() {
     return this.surveyStore;
   }
@@ -48,7 +44,9 @@ class Wizard extends React.PureComponent {
             backButtonText={"上一步"}
             preventEnterSubmission={true}
             nextTextOnFinalActionStep={"提交"}
-            hocValidationAppliedTo={[]}/>
+            hocValidationAppliedTo={[]}
+            nextButtonCls={"btn btn-prev btn-success btn-lg pull-right"}
+            backButtonCls={"btn btn-next btn-success btn-lg pull-left"}/>
         </div>
       </div>
     )

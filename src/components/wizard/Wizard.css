@@ -8,6 +8,12 @@
   height: auto;
 }
 
+.validate-error {
+  border: 0.2em solid indianred;
+  margin: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+}
+
 .wizard-card {
   padding: 20px;
   margin: 20px 0;

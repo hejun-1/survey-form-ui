@@ -9,6 +9,9 @@ class StepShippingAddress extends React.PureComponent {
     this.onAddressChange = this.onAddressChange.bind(this);
     this.onPhoneChange = this.onPhoneChange.bind(this);
     this.onVerifyCodeChange = this.onVerifyCodeChange.bind(this);
+    this.state = {
+      validateError: null
+    }
   }
 
   onVerifyCodeChange(event) {
@@ -41,7 +44,20 @@ class StepShippingAddress extends React.PureComponent {
   }
 
   isValidated() {
-    if (!this.shippingAddress || !this.mobile || !this.verifyCode) {
+    if (!this.shippingAddress) {
+      this.setState({
+        validateError: '请填写邮寄地址'
+      });
+      return false;
+    } else if (!this.mobile) {
+      this.setState({
+        validateError: '电话号码错误'
+      });
+      return false;
+    } else if (!this.verifyCode) {
+      this.setState({
+        validateError: '验证码错误'
+      });
       return false;
     }
     return new Promise((resolve, reject) => {
@@ -52,9 +68,17 @@ class StepShippingAddress extends React.PureComponent {
         dataType: 'json',
         type: 'POST',
         complete: (data) => {
-          if (data.responseText != '验证码错误') {
+          if (data.statusText == 'error') {
+            this.setState({
+              validateError: '提交失败,请重试或者联系我们解决'
+            });
+            reject();
+          } else if (data.responseText != '验证码错误') {
             resolve();
           } else {
+            this.setState({
+              validateError: '验证码错误'
+            });
             reject();
           }
         }
@@ -71,6 +95,11 @@ class StepShippingAddress extends React.PureComponent {
               <label className="col-md-12 control-label">
                 <h2>第四步: 填写收货地址及联系方式</h2>
                 <h4>请务必保证您的<code>收货地址</code>以及<code>电话号码</code>正确</h4>
+                {
+                  this.state.validateError && <div className={"validate-error"}>
+                    <code>{this.state.validateError}</code>
+                  </div>
+                }
               </label>
             </div>
             <div className="row">

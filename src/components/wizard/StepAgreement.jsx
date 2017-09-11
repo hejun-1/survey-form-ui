@@ -5,7 +5,8 @@ class StepAgreement extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      agree: null
+      agree: null,
+      validateStateClass: ''
     };
     this.onSelect = this.onSelect.bind(this);
   }
@@ -23,7 +24,13 @@ class StepAgreement extends React.PureComponent {
   }
 
   isValidated() {
-    return this.state.agree;
+    const isValidated = this.state.agree;
+    if (!isValidated) {
+      this.setState({
+        validateStateClass: 'validate-error'
+      })
+    }
+    return isValidated;
   }
 
   render() {
@@ -94,10 +101,12 @@ class StepAgreement extends React.PureComponent {
                 </div>
               </div>
               <div className="wizard-mark-el">
-                <CheckboxGroup
-                  onChange = { this.onSelect }>
+                <div className={this.state.validateStateClass}>
+                  <CheckboxGroup
+                    onChange = { this.onSelect }>
                     <label><Checkbox value={"agree"}/>是否同意</label>
-                </CheckboxGroup>
+                  </CheckboxGroup>
+                </div>
               </div>
             </div>
           </div>

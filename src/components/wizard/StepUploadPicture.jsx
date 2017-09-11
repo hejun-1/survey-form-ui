@@ -9,6 +9,9 @@ class StepUploadPicture extends React.PureComponent {
     this.onError = this.onError.bind(this);
     this.onSuccess = this.onSuccess.bind(this);
     this.pictureUrl = null;
+    this.state = {
+      validateError: false
+    }
   }
 
   onError(error) {
@@ -16,13 +19,22 @@ class StepUploadPicture extends React.PureComponent {
 
   onSuccess(data) {
     this.pictureUrl = data;
+    this.setState({
+      validateError: false
+    });
     this.props.updateStore({
       pictureUrl: this.pictureUrl
     });
   }
 
   isValidated() {
-    return  this.pictureUrl !== null;
+    const isValidated = this.pictureUrl !== null;
+    if (!isValidated) {
+      this.setState({
+        validateError: true
+      });
+    }
+    return isValidated;
   }
 
   render() {
@@ -33,6 +45,12 @@ class StepUploadPicture extends React.PureComponent {
             <div className="wizard-step-header">
               <label className="col-md-12 control-label">
                 <h2>第三步: 上传检测结果照片</h2>
+                {
+                  this.state.validateError && <div className={"validate-error"}>
+                    <code>进行下一步前请上传照片,以便工作人员进行处理</code>
+                  </div>
+                }
+
               </label>
               <div className="wizard-card wizard-scroll-container">
                 <FileUploader onSuccess={this.onSuccess} onError={this.onError} uploadUrl={`${endpoint}/pictures`}/>
