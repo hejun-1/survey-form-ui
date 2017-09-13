@@ -54,12 +54,13 @@ class StepShippingAddress extends React.PureComponent {
         validateError: '电话号码错误'
       });
       return false;
-    } else if (!this.verifyCode) {
-      this.setState({
-        validateError: '验证码错误'
-      });
-      return false;
     }
+    // } else if (!this.verifyCode) {
+    //   this.setState({
+    //     validateError: '验证码错误'
+    //   });
+    //   return false;
+    // }
     return new Promise((resolve, reject) => {
       $.ajax({
         url: `${endpoint}/surveys?verifyCode=${this.verifyCode}`,
@@ -73,11 +74,11 @@ class StepShippingAddress extends React.PureComponent {
               validateError: '提交失败,请重试或者联系我们解决'
             });
             reject();
-          } else if (data.responseText != '验证码错误') {
+          } else if (data.responseText == 'SUCCESS') {
             resolve();
           } else {
             this.setState({
-              validateError: '验证码错误'
+              validateError: '提交失败,请重试或者联系我们解决'
             });
             reject();
           }
@@ -107,12 +108,12 @@ class StepShippingAddress extends React.PureComponent {
                 <div className="wizard-card wizard-scroll-container">
                   <div>
                     <label>手机号:</label>
-                    <div className="input-group">
-                      <input type="text" className="form-control" onChange={this.onPhoneChange}/>
+                    <input type="text" className="form-control" onChange={this.onPhoneChange}/>
+                    <div style={{display: "none"}} className="input-group">
                       <span className="input-group-addon" onClick={this.getVerifyCode} style={{cursor: "pointer"}}>获取验证码</span>
                     </div>
                   </div>
-                  <div>
+                  <div style={{display: "none"}}>
                     <label>验证码:</label>
                     <input className="form-control" onChange={this.onVerifyCodeChange}/>
                   </div>
