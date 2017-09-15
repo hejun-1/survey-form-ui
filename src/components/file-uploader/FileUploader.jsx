@@ -54,6 +54,6 @@ FileUploader.PropTypes = {
   uploadUrl: React.PropTypes.string.required,
   onSuccess: React.PropTypes.func.required,
   onError:  React.PropTypes.func.required
-}
+};
 
 export default FileUploader;

@@ -61,10 +61,14 @@ class StepShippingAddress extends React.PureComponent {
     //   });
     //   return false;
     // }
+
+    const store = this.props.getStore();
+    store.tags = store.questions.map((q) => q.value).filter((t) => t && t.length > 0);
+
     return new Promise((resolve, reject) => {
       $.ajax({
         url: `${endpoint}/surveys?verifyCode=${this.verifyCode}`,
-        data: JSON.stringify(this.props.getStore()),
+        data: JSON.stringify(store),
         contentType: 'application/json; charset=utf-8',
         dataType: 'json',
         type: 'POST',

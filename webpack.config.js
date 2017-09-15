@@ -1,38 +1,7 @@
-const path = require('path');
-const webpack = require('webpack');
-const ENDPOINT = process.env.ENDPOINT || 'http://0.0.0.0:9190/api';
+const env = process.env.APP_ENV ? process.env.APP_ENV : 'consumer';
 
-module.exports = {
-  devtool: 'eval-source-map',
-  entry: './src/application.jsx',
-  output: {
-    filename: 'bundle.js',
-    chunkFilename: '[id].chunk.js',
-    path: path.resolve('./dist'),
-    publicPath: '/'
-  },
-  resolve: {
-    extensions: ['.js', '.jsx']
-  },
-  plugins: [
-    new webpack.DefinePlugin({
-      'process.env.ENDPOINT': JSON.stringify(ENDPOINT)
-    }),
-  ],
-  module: {
-    loaders: [
-      {
-        test: /\.jsx$/,
-        loader: 'babel-loader',
-        exclude: /node_modules/,
-        query: {
-          presets: ['es2015','react',"stage-3"]
-        }
-      },
-      {
-        test: /\.css$/,
-        loader: 'style-loader!css-loader'
-      }
-    ]
-  }
-};
+function buildConfig() {
+  return require('./webpack-' + env + '.config.js')();
+}
+
+module.exports = buildConfig;

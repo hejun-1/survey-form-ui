@@ -9,12 +9,14 @@
   },
   "author": "RenAi Dev Team",
   "dependencies": {
+    "history": "^4.7.2",
+    "jquery": "^3.2.1",
     "react": "^15.4.2",
     "react-checkbox-group": "^3.3.1",
     "react-dom": "^15.4.2",
     "react-file-upload": "0.0.4",
     "react-redux": "^5.0.2",
-    "react-router": "^4.2.0",
+    "react-router": "^2.8.1",
     "react-stepzilla": "^4.6.3",
     "react-wizard-form": "^1.2.11",
     "redux": "^3.6.0"
@@ -29,6 +31,7 @@
     "css-loader": "^0.28.7",
     "style-loader": "^0.18.2",
     "webpack": "^2.2.0",
-    "webpack-dev-server": "^2.7.1"
+    "webpack-dev-server": "^2.7.1",
+    "webpack-merge": "^4.1.0"
   }
 }
