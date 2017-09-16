@@ -18,6 +18,7 @@ class SurveyListing extends React.Component {
       status: 'pending'
     };
     this.page = 0;
+    this.selections = {};
     this.getSurveyListing = this.getSurveyListing.bind(this);
     this.onFilterStatusChange = this.onFilterStatusChange.bind(this);
     this.nextPage = this.nextPage.bind(this);
@@ -26,7 +27,44 @@ class SurveyListing extends React.Component {
     this.firstPage = this.firstPage.bind(this);
     this.jumpTo = this.jumpTo.bind(this);
     this.onKeyDown = this.onKeyDown.bind(this);
+    this.onStateChange = this.onStateChange.bind(this);
+    this.proceedAll = this.proceedAll.bind(this);
+    this.exportToExcel = this.exportToExcel.bind(this);
+    this.toggleStatus = this.toggleStatus.bind(this);
+    this.getSelectionsParams = this.getSelectionsParams.bind(this);
     this.getSurveyListing();
+  }
+
+  proceedAll(state) {
+    $('.survey-checkbox').each((i, el)=>{
+      state ? $(el).attr('checked', 'checked') : $(el).removeAttr('checked');
+    })
+    this.state.surveys.forEach((s) => this.onStateChange(s, state));
+  }
+
+  getSelectionsParams() {
+    return Object.getOwnPropertyNames(this.selections).toString();
+  }
+
+  exportToExcel() {
+    window.open(`${endpoint}/surveys/excel?ids=${this.getSelectionsParams()}`);
+  }
+
+  toggleStatus() {
+    const status = this.filters.status === 'pending' ? 'handled' : 'pending';
+    $.ajax({
+      type: 'POST',
+      url: `${endpoint}/surveys/${status}?ids=${this.getSelectionsParams()}`,
+      success: () => this.getSurveyListing()
+    });
+  }
+
+  onStateChange(survey, state) {
+    if (state) {
+      this.selections[survey.id] = state;
+    } else {
+      delete this.selections[survey.id];
+    }
   }
 
   nextPage() {
@@ -94,10 +132,15 @@ class SurveyListing extends React.Component {
             <option value="handled">已处理</option>
           </select>
         </div>
+        <div className="survey-section">
+          <button className="btn btn-default" onClick={this.exportToExcel}>导出</button>
+          <button className="btn btn-default" onClick={this.toggleStatus}>更新状态</button>
+        </div>
         <div className="table-responsive">
           <table className="table table-striped">
             <thead>
               <tr>
+                <th><input type="checkbox" onChange={(e)=>this.proceedAll($(e.target).is(':checked'))}/></th>
                 <th>手机</th>
                 <th>日期</th>
                 <th>状态</th>
@@ -107,6 +150,7 @@ class SurveyListing extends React.Component {
             <tbody>
               {this.state.surveys.map((survey) => (
                 <tr key={survey.id} onClick={ () => this.props.onSurveySelected(survey) }>
+                  <td><input className="survey-checkbox" checked={this.state.allState} onChange={(e)=>this.onStateChange(survey, $(e.target).is(':checked'))} type="checkbox"/></td>
                   <td>{survey.mobile}</td>
                   <td>{survey.date}</td>
                   <td>{survey.status}</td>
