@@ -1,7 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { createStore } from 'redux';
+import { combineReducers } from 'redux'
+import { Provider } from 'react-redux';
 import { Router, Route, browserHistory, Link } from 'react-router';
-import { SurveyListing, SurveyDetails } from './components/survey-listing';
+import { SurveyListing, SurveyDetails,  SurveyActionReducer} from './components/survey-listing';
 import { Login as LoginForm } from './components/login-form';
 import { validateAdminCredential } from './components/credentials';
 
@@ -23,11 +26,17 @@ class App extends React.Component {
 
 const rootContainer = document.getElementById('app-container');
 
+const store = createStore(combineReducers({
+  SurveyActionReducer
+}));
+
 ReactDOM.render(
-  <Router history={browserHistory}>
+  <Provider store={store}>
+    <Router history={browserHistory}>
       <Route path="/" component={App}/>
       <Route path="/listing" component={SurveyListing} onEnter={validateAdminCredential}/>
       <Route path="/listing/details/:id" component={SurveyDetails} />
       <Route path="/login" component={LoginForm}></Route>
-  </Router>,
+    </Router>
+  </Provider>,
   rootContainer);

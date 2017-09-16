@@ -1,0 +1,21 @@
+.survey-section {
+    padding: 9px 14px;
+    margin-bottom: 14px;
+    background-color: #f7f7f9;
+    border: 1px solid #e1e1e8;
+    border-radius: 4px;
+}
+
+.survey-container {
+    padding: 1em 1em 1em 1em;
+}
+
+.survey-toolbar {
+    margin: 1em 0em 1em 0em;
+}
+
+.pagination-page-index {
+    width: 50px;
+    display: inline-block;
+    margin: -2px 10px 0px 10px;
+}
