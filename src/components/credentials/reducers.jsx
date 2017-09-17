@@ -1,10 +1,5 @@
-export const SurveyActionReducer = (state={}, action) => {
+export const CredentialReducer = (state={}, action) => {
     switch (action.type) {
-        case 'SURVEY_SELECT_ACTION':
-            return  {
-                ...state,
-                survey: action.survey
-            };
         case 'ADMIN_LOGIN_ACTION':
             return  {
                 ...state,

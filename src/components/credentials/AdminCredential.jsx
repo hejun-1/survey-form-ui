@@ -1,4 +1,6 @@
-const validateAdminCredential = (nextState, replace, next) => {
+import { connect } from 'react-redux';
+
+const ValidateAdminCredential = (nextState, replace, next) => {
   if (false) {
     replace('/login');
     next();
@@ -7,4 +9,8 @@ const validateAdminCredential = (nextState, replace, next) => {
   }
 };
 
-export default validateAdminCredential;
+const mapStateToProps = ({session}) => ({
+  session
+});
+
+export default ValidateAdminCredential;

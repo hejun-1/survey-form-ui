@@ -3,10 +3,11 @@ import ReactDOM from 'react-dom';
 import { createStore } from 'redux';
 import { combineReducers } from 'redux'
 import { Provider } from 'react-redux';
-import { Router, Route, browserHistory, Link } from 'react-router';
+import { Router, Route, browserHistory, Link, IndexRoute} from 'react-router';
+import { syncHistoryWithStore, routerReducer, push } from 'react-router-redux'
 import { SurveyListing, SurveyDetails,  SurveyActionReducer} from './components/survey-listing';
 import { Login as LoginForm } from './components/login-form';
-import { validateAdminCredential } from './components/credentials';
+import { ValidateAdminCredential, CredentialReducer } from './components/credentials';
 
 class App extends React.Component {
   constructor(props) {
@@ -17,8 +18,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Link to="/listing">Listing Link</Link>
-        <Link to="/login">Login Link</Link>
+        {this.props.children}
       </div>
     );
   }
@@ -27,16 +27,24 @@ class App extends React.Component {
 const rootContainer = document.getElementById('app-container');
 
 const store = createStore(combineReducers({
-  SurveyActionReducer
+  SurveyActionReducer,
+  CredentialReducer,
+  routing: routerReducer
 }));
+
+const history = syncHistoryWithStore(browserHistory, store);
+
+history.listen((location) => console.log(location));
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router history={browserHistory}>
-      <Route path="/" component={App}/>
-      <Route path="/listing" component={SurveyListing} onEnter={validateAdminCredential}/>
+    <Router history={history}>
+      <Route path="/" component={App}>
+        <IndexRoute component={ LoginForm }/>
+      </Route>
+
+      <Route path="/listing" component={SurveyListing} onEnter={ValidateAdminCredential}/>
       <Route path="/listing/details/:id" component={SurveyDetails} />
       <Route path="/login" component={LoginForm}></Route>
     </Router>
-  </Provider>,
-  rootContainer);
+  </Provider>, rootContainer);

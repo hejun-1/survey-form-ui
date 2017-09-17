@@ -2,6 +2,7 @@ import React from 'react';
 import endpoint from '../../backend';
 import { Link } from 'react-router';
 import $ from 'jquery';
+import { browserHistory } from 'react-router';
 import { SelectActionCreator } from './actions';
 import { connect } from 'react-redux';
 import './Surveys.css';
@@ -11,28 +12,32 @@ const ENTER_KEY_CODE = 13;
 class SurveyListing extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      surveys: []
-    };
-    this.filters = {
-      status: 'pending'
-    };
-    this.page = 0;
-    this.selections = {};
-    this.getSurveyListing = this.getSurveyListing.bind(this);
-    this.onFilterStatusChange = this.onFilterStatusChange.bind(this);
-    this.nextPage = this.nextPage.bind(this);
-    this.prePage = this.prePage.bind(this);
-    this.lastPage = this.lastPage.bind(this);
-    this.firstPage = this.firstPage.bind(this);
-    this.jumpTo = this.jumpTo.bind(this);
-    this.onKeyDown = this.onKeyDown.bind(this);
-    this.onStateChange = this.onStateChange.bind(this);
-    this.proceedAll = this.proceedAll.bind(this);
-    this.exportToExcel = this.exportToExcel.bind(this);
-    this.toggleStatus = this.toggleStatus.bind(this);
-    this.getSelectionsParams = this.getSelectionsParams.bind(this);
-    this.getSurveyListing();
+    if (!this.props.session) {
+      browserHistory.push('/login');
+    } else {
+      this.state = {
+        surveys: []
+      };
+      this.filters = {
+        status: 'pending'
+      };
+      this.page = 0;
+      this.selections = {};
+      this.getSurveyListing = this.getSurveyListing.bind(this);
+      this.onFilterStatusChange = this.onFilterStatusChange.bind(this);
+      this.nextPage = this.nextPage.bind(this);
+      this.prePage = this.prePage.bind(this);
+      this.lastPage = this.lastPage.bind(this);
+      this.firstPage = this.firstPage.bind(this);
+      this.jumpTo = this.jumpTo.bind(this);
+      this.onKeyDown = this.onKeyDown.bind(this);
+      this.onStateChange = this.onStateChange.bind(this);
+      this.proceedAll = this.proceedAll.bind(this);
+      this.exportToExcel = this.exportToExcel.bind(this);
+      this.toggleStatus = this.toggleStatus.bind(this);
+      this.getSelectionsParams = this.getSelectionsParams.bind(this);
+      this.getSurveyListing();
+    }
   }
 
   proceedAll(state) {
@@ -123,6 +128,7 @@ class SurveyListing extends React.Component {
   }
 
   render() {
+    if (!this.state) return null;
     return (
       <div className="survey-container">
         <div className="survey-section">
@@ -179,4 +185,8 @@ const mapDispatchToProps = (dispatch) => ({
   onSurveySelected: (survey) => dispatch(SelectActionCreator(survey))
 });
 
-export default connect(null, mapDispatchToProps)(SurveyListing);
+const mapStateToProps = ({SurveyActionReducer}) => ({
+  session: SurveyActionReducer.session
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(SurveyListing);

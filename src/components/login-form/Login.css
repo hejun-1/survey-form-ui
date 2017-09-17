@@ -1,0 +1,7 @@
+.login-form-container, .login-error-msg {
+  margin: 1em 1em 1em 1em;
+}
+
+.login-error-msg {
+  color: red;
+}

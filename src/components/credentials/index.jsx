@@ -1,3 +1,4 @@
-import validateAdminCredential from './AdminCredential';
+import ValidateAdminCredential from './AdminCredential';
+import { CredentialReducer } from './reducers';
 
-export { validateAdminCredential };
+export { ValidateAdminCredential, CredentialReducer };
