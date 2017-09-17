@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-export ENDPOINT=http://47.93.4.184/api
+
 export API_ENDPOINT_IP=172.17.193.65
 
 cp default.conf.template default.conf
@@ -8,6 +8,17 @@ cp default.conf.template default.conf
 sed -i "" "s/___API_ENDPOINT_IP___/$API_ENDPOINT_IP/g" default.conf || sed -i "s/___API_ENDPOINT_IP___/$API_ENDPOINT_IP/g" default.conf
 
 npm install
+
+export ENDPOINT=http://47.93.4.184:81/api
+export APP_ENV=admin
+
+npm run build
+
+cp ./dist/bundle.js ./dist/admin.bundle.js
+
+
+export ENDPOINT=http://47.93.4.184/api
+export APP_ENV=consumer
 
 npm run build
 
