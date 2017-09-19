@@ -1,0 +1,16 @@
+.survey-button, .report-button  {
+  height: 50%;
+  border: 1px solid red;
+  text-align: center;
+  vertical-align: middle;
+  margin: 2em;
+}
+
+.app-menu-text {
+  top: 50%;
+  position: relative;
+}
+
+.app-menu {
+  height: 100%;
+}

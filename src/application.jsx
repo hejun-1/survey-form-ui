@@ -1,30 +1,33 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore, combineReducers} from 'redux';
-import { Provider } from 'react-redux';
-import { Wizard} from './components/wizard';
+import { Router, Route, hashHistory, IndexRedirect } from 'react-router';
+import { Wizard } from './components/wizard';
+import { ReportSearch } from './components/result-report';
+import { Menu } from './components/menu';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {}
   }
 
   render() {
     return (
-      <div>
-        <Wizard></Wizard>
+      <div style={{height:"100%"}}>
+        <Meun></Meun>
       </div>
     );
   }
 };
 
-const store = createStore(combineReducers({}));
 const rootContainer = document.getElementById('app-container');
 
 ReactDOM.render(
-                <Provider store={store}>
-                  <App />
-                </Provider>,
+                <Router history={hashHistory}>
+                  <Route path="/" component={App}>
+                    <IndexRedirect to="/survey" />
+                  </Route>
+                  <Route path="/survey" component={Wizard}/>
+                  <Route path="/report" component={ReportSearch}/>
+                </Router>,
                 rootContainer
 );

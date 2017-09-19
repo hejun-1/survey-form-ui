@@ -38,7 +38,7 @@ class SurveyForm extends React.Component {
           </table>
         </div>
         <div>
-          <a href={this.props.survey.pictureUrl} target="_blank"><img src={this.props.survey.pictureUrl}/></a>
+          <a href={this.props.survey.pictureUrl} target="_blank"><img className="img-responsive" src={this.props.survey.pictureUrl}/></a>
         </div>
       </div>
     );

@@ -1,0 +1,36 @@
+.report-search-box {
+    margin: 2em 2em 2em 2em;
+}
+
+.report-search-error {
+    text-align: center;
+    border: 0.2em solid indianred;
+    margin: 5px 0px 5px 0px;
+    border-radius: 5px 5px 5px 5px;
+}
+
+.report-content {
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    padding: 10px 10px 10px 10px;
+    margin: 10px 0px 10px 0px;
+}
+
+.report-section {
+    margin: 10px 0px 10px 0px;
+    padding: 0.5em 0.5em 0.5em 0.5em;
+    background-color: #f6f6f6;
+    color: #657b83;
+    overflow: hidden;
+}
+
+.report-label {
+    margin: 0px 5px 0px 5px;
+    font-weight: bold;
+}
+
+.report-statement-item {
+    display: inline-block;
+    float: left;
+    margin: 5px 5px 5px 5px;
+}
