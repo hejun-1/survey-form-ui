@@ -154,7 +154,7 @@ class SurveyListing extends React.Component {
               </tr>
             </thead>
             <tbody>
-              {this.state.surveys.map((survey) => (
+              {this.state.surveys && this.state.surveys.map((survey) => (
                 <tr key={survey.id} onClick={ () => this.props.onSurveySelected(survey) }>
                   <td><input className="survey-checkbox" checked={this.state.allState} onChange={(e)=>this.onStateChange(survey, $(e.target).is(':checked'))} type="checkbox"/></td>
                   <td>{survey.mobile}</td>
@@ -185,8 +185,8 @@ const mapDispatchToProps = (dispatch) => ({
   onSurveySelected: (survey) => dispatch(SelectActionCreator(survey))
 });
 
-const mapStateToProps = ({SurveyActionReducer}) => ({
-  session: SurveyActionReducer.session
+const mapStateToProps = ({CredentialReducer}) => ({
+  session: CredentialReducer.session
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SurveyListing);

@@ -9,7 +9,7 @@ sed -i "" "s/___API_ENDPOINT_IP___/$API_ENDPOINT_IP/g" default.conf || sed -i "s
 
 npm install
 
-export ENDPOINT=http://47.93.4.184:81/api
+export ENDPOINT=http://m.renaijiance.com:81/api
 export APP_ENV=admin
 
 npm run build
@@ -17,7 +17,7 @@ npm run build
 cp ./dist/bundle.js ./dist/admin.bundle.js
 
 
-export ENDPOINT=http://47.93.4.184/api
+export ENDPOINT=http://m.renaijiance.com/api
 export APP_ENV=consumer
 
 npm run build

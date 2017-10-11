@@ -40,10 +40,11 @@ class ReportViewer extends React.PureComponent {
                   items.map((item) => {
                     const result = this.props.model[item.idx + '_result'];
                     if (result) {
+                      const className = result === '阴性' ? 'result-green' : 'result-red';
                       return (
                         <tr key={item.idx}>
                           <td>{item.label}</td>
-                          <td>{result}</td>
+                          <td><span className={className}>{result}</span></td>
                           <td>{item.base}</td>
                         </tr>
                       )
