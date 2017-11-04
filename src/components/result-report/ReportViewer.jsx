@@ -56,7 +56,6 @@ class ReportViewer extends React.PureComponent {
           </div>
           <div className="report-section">
             <div className="report-statement-item"><span className="report-label">检测人:</span><span>{this.props.model.Tester}</span></div>
-            <div className="report-statement-item"><span className="report-label">审核人:</span><span>{this.props.model.Reviewer}</span></div>
             <div className="report-statement-item"><span className="report-label">收样日期:</span><span>{this.props.model.ReceiveYear}年{this.props.model.ReceiveMonth}月{this.props.model.ReceiveDay || '  '}日</span></div>
             <div className="report-statement-item"><span className="report-label">报告日期:</span><span>{this.props.model.TestYear}年{this.props.model.TestMonth}月{this.props.model.TestDate || '  '}日</span></div>
             <div className="report-statement-item">

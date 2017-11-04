@@ -9,9 +9,18 @@ class StepShippingAddress extends React.PureComponent {
     this.onAddressChange = this.onAddressChange.bind(this);
     this.onPhoneChange = this.onPhoneChange.bind(this);
     this.onVerifyCodeChange = this.onVerifyCodeChange.bind(this);
+    this.onEmailChange = this.onEmailChange.bind(this);
     this.state = {
       validateError: null
     }
+  }
+
+  onEmailChange(event) {
+    const email = event.target.value;
+    this.props.updateStore({
+      email
+    });
+    this.email = email;
   }
 
   onVerifyCodeChange(event) {
@@ -52,6 +61,11 @@ class StepShippingAddress extends React.PureComponent {
     } else if (!this.mobile) {
       this.setState({
         validateError: '电话号码错误'
+      });
+      return false;
+    } else if (!this.email) {
+      this.setState({
+        validateError: '电子邮箱错误'
       });
       return false;
     }
@@ -116,6 +130,10 @@ class StepShippingAddress extends React.PureComponent {
                     <div style={{display: "none"}} className="input-group">
                       <span className="input-group-addon" onClick={this.getVerifyCode} style={{cursor: "pointer"}}>获取验证码</span>
                     </div>
+                  </div>
+                  <div>
+                    <label>邮箱:</label>
+                    <input type="text" className="form-control" onChange={this.onEmailChange}/>
                   </div>
                   <div style={{display: "none"}}>
                     <label>验证码:</label>

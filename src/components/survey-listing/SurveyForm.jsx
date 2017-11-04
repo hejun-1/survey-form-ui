@@ -16,6 +16,7 @@ class SurveyForm extends React.Component {
         </div>
         <div className="section">
           <div><label>填报者手机:</label><span>{this.props.survey.mobile}</span></div>
+          <div><label>电子邮箱:</label><span>{this.props.survey.email}</span></div>
           <div><label>填报日期:</label><span>{this.props.survey.date}</span></div>
           <div><label>邮寄地址:</label><span>{this.props.survey.shippingAddress}</span></div>
         </div>

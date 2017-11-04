@@ -19,7 +19,8 @@ class SurveyListing extends React.Component {
         surveys: []
       };
       this.filters = {
-        status: 'pending'
+        status: 'pending',
+        tags: null
       };
       this.page = 0;
       this.selections = {};
@@ -36,6 +37,7 @@ class SurveyListing extends React.Component {
       this.exportToExcel = this.exportToExcel.bind(this);
       this.toggleStatus = this.toggleStatus.bind(this);
       this.getSelectionsParams = this.getSelectionsParams.bind(this);
+      this.onFilterPackageTypeChange = this.onFilterPackageTypeChange.bind(this);
       this.getSurveyListing();
     }
   }
@@ -107,6 +109,11 @@ class SurveyListing extends React.Component {
     this.getSurveyListing();
   }
 
+  onFilterPackageTypeChange(event) {
+    this.filters.tags = event.target.value === '' ? null : event.target.value;
+    this.getSurveyListing();
+  }
+
   onKeyDown(event) {
     if (event.keyCode === ENTER_KEY_CODE
       && !isNaN(event.target.value)) {
@@ -116,7 +123,8 @@ class SurveyListing extends React.Component {
 
   getSurveyListing() {
     return new Promise((resolve) => {
-      $.get(`${endpoint}/surveys/${this.filters.status}?page=${this.page}`, (data) => {
+      const tags = this.filters.tags ? `&tags=${this.filters.tags}` : '';
+      $.get(`${endpoint}/surveys/${this.filters.status}?page=${this.page}${tags}`, (data) => {
         resolve(data);
       });
     }).then((data)=>{
@@ -139,6 +147,14 @@ class SurveyListing extends React.Component {
           </select>
         </div>
         <div className="survey-section">
+          <label>检测包类型</label>
+          <select ref="packageTypeFilter" onChange={ this.onFilterPackageTypeChange }>
+            <option value="">全部</option>
+            <option value="干血斑型">干血斑型</option>
+            <option value="尿液型">尿液型</option>
+          </select>
+        </div>
+        <div className="survey-section">
           <button className="btn btn-default" onClick={this.exportToExcel}>导出</button>
           <button className="btn btn-default" onClick={this.toggleStatus}>更新状态</button>
         </div>
@@ -148,6 +164,7 @@ class SurveyListing extends React.Component {
               <tr>
                 <th><input type="checkbox" onChange={(e)=>this.proceedAll($(e.target).is(':checked'))}/></th>
                 <th>手机</th>
+                <th>邮箱</th>
                 <th>日期</th>
                 <th>状态</th>
                 <th>操作</th>
@@ -158,6 +175,7 @@ class SurveyListing extends React.Component {
                 <tr key={survey.id} onClick={ () => this.props.onSurveySelected(survey) }>
                   <td><input className="survey-checkbox" checked={this.state.allState} onChange={(e)=>this.onStateChange(survey, $(e.target).is(':checked'))} type="checkbox"/></td>
                   <td>{survey.mobile}</td>
+                  <td>{survey.email}</td>
                   <td>{survey.date}</td>
                   <td>{survey.status}</td>
                   <td><Link to={`/listing/details/${survey.id}`}>查看</Link></td>

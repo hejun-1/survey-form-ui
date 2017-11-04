@@ -21,7 +21,6 @@ class ReportSearch extends React.PureComponent {
       dataType: 'json',
       success: (data) => {
         const reportData = JSON.parse(unescape(data.data));
-        reportData.Comment = unescape(data.comment);
         this.setState({
           reportData,
           error: null
@@ -40,6 +39,16 @@ class ReportSearch extends React.PureComponent {
     return (
       <div className="report-search-box">
         {this.state.error && <div className="report-search-error">{ this.state.error }</div>}
+        <div>
+          <ul>
+            <li>
+              一般情况下检测机构收到样本后，一周左右出结果。
+            </li>
+            <li>
+              请您务必确定本人能够承受检测的结果，如有任何问题要及时寻求帮助，您可以通过仁爱网官方客服（www.renaijiance.com客服通道或者客服QQ：3284883815）与我们联系。
+            </li>
+          </ul>
+        </div>
         <div className="input-group">
           <input type="text" ref="number" placeholder="输入样本编号" className="form-control"/>
             <span className="input-group-addon"
