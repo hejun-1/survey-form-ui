@@ -1,10 +1,5 @@
 import React from 'react';
 import StepZilla from 'react-stepzilla';
-import StepAgreement from './StepAgreement';
-import StepSurvey from './StepSurvey';
-import StepUploadPicture from './StepUploadPicture';
-import StepShippingAddress from './StepShippingAddress';
-import StepComplete from './StepComplete';
 import './Wizard.css';
 
 class Wizard extends React.PureComponent {
@@ -26,14 +21,9 @@ class Wizard extends React.PureComponent {
   }
 
   render() {
-    const steps =
-      [
-        {name: '1', component: <StepAgreement getStore={() => (this.getStore())} updateStore={(u) => {this.updateStore(u)}} />},
-        {name: '2', component: <StepSurvey getStore={() => (this.getStore())} updateStore={(u) => {this.updateStore(u)}} />},
-        {name: '3', component: <StepUploadPicture getStore={() => (this.getStore())} updateStore={(u) => {this.updateStore(u)}} />},
-        {name: '4', component: <StepShippingAddress getStore={() => (this.getStore())} updateStore={(u) => {this.updateStore(u)}} />},
-        {name: '5', component: <StepComplete getStore={() => (this.getStore())} updateStore={(u) => {this.updateStore(u)}} />},
-      ]
+    const steps = this.props.steps.map((Step, i) => {
+      return  {name: i.toString(), component: <Step getStore={() => (this.getStore())} updateStore={(u) => {this.updateStore(u)}} />}
+    });
 
     return (
       <div className='wizard'>

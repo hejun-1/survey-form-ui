@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, hashHistory, IndexRedirect } from 'react-router';
-import { Wizard } from './components/wizard';
+import { Survey } from './components/wizard';
 import { ReportSearch } from './components/result-report';
 import { Menu } from './components/menu';
 
@@ -26,7 +26,8 @@ ReactDOM.render(
                   <Route path="/" component={App}>
                     <IndexRedirect to="/survey" />
                   </Route>
-                  <Route path="/survey" component={Wizard} getData={() => new Promise((r) => r({}))}/>
+                  <Route path="/survey/:name" component={Survey} getData={() => new Promise((r) => r({}))}/>
+                  <Route path="/survey" component={Survey} getData={() => new Promise((r) => r({}))}/>
                   <Route path="/report" component={ReportSearch}/>
                 </Router>,
                 rootContainer

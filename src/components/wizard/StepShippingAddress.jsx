@@ -79,7 +79,6 @@ class StepShippingAddress extends React.PureComponent {
 
     const store = this.props.getStore();
     store.tags = store.questions.map((q) => q.value).filter((t) => t && t.length > 0);
-
     return new Promise((resolve, reject) => {
       $.ajax({
         url: `${endpoint}/surveys?verifyCode=${this.verifyCode}`,

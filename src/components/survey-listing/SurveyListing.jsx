@@ -20,7 +20,8 @@ class SurveyListing extends React.Component {
       };
       this.filters = {
         status: 'pending',
-        tags: null
+        tags: null,
+        name: ''
       };
       this.page = 0;
       this.selections = {};
@@ -37,7 +38,7 @@ class SurveyListing extends React.Component {
       this.exportToExcel = this.exportToExcel.bind(this);
       this.toggleStatus = this.toggleStatus.bind(this);
       this.getSelectionsParams = this.getSelectionsParams.bind(this);
-      this.onFilterPackageTypeChange = this.onFilterPackageTypeChange.bind(this);
+      this.onFilterSurveyNameChange = this.onFilterSurveyNameChange.bind(this);
       this.getSurveyListing();
     }
   }
@@ -109,8 +110,9 @@ class SurveyListing extends React.Component {
     this.getSurveyListing();
   }
 
-  onFilterPackageTypeChange(event) {
-    this.filters.tags = event.target.value === '' ? null : event.target.value;
+  onFilterSurveyNameChange(event) {
+    //this.filters.tags = event.target.value === '' ? null : event.target.value;
+    this.filters.name = event.target.value;
     this.getSurveyListing();
   }
 
@@ -123,8 +125,9 @@ class SurveyListing extends React.Component {
 
   getSurveyListing() {
     return new Promise((resolve) => {
-      const tags = '';//this.filters.tags ? `&tags=${this.filters.tags}` : '';
-      $.get(`${endpoint}/surveys/${this.filters.status}?page=${this.page}${tags}`, (data) => {
+      const tags = this.filters.tags ? `&tags=${this.filters.tags}` : '';
+      const surveyName = this.filters.name;
+      $.get(`${endpoint}/surveys/${this.filters.status}?page=${this.page}&name=${surveyName}${tags}`, (data) => {
         resolve(data);
       });
     }).then((data)=>{
@@ -136,19 +139,17 @@ class SurveyListing extends React.Component {
   }
 
   render() {
-    /*
-     <div className="survey-section">
-     <label>检测包类型</label>
-     <select ref="packageTypeFilter" onChange={ this.onFilterPackageTypeChange }>
-     <option value="">全部</option>
-     <option value="干血斑型">干血斑型</option>
-     <option value="尿液型">尿液型</option>
-     </select>
-     </div>
-     */
     if (!this.state) return null;
     return (
       <div className="survey-container">
+        <div className="survey-section">
+          <label>调查问卷名称</label>
+          <select onChange={ this.onFilterSurveyNameChange }>
+            <option value="">全部</option>
+            <option value="HIV血液快速自检阳性者服务项目调查问卷">HIV血液快速自检阳性者服务项目调查问卷</option>
+            <option value="网购自我检测调查问卷">网购自我检测调查问卷</option>
+          </select>
+        </div>
         <div className="survey-section">
           <label>状态</label>
           <select ref="statusFilter" onChange={ this.onFilterStatusChange }>
@@ -165,6 +166,7 @@ class SurveyListing extends React.Component {
             <thead>
               <tr>
                 <th><input type="checkbox" onChange={(e)=>this.proceedAll($(e.target).is(':checked'))}/></th>
+                <th>问卷名称</th>
                 <th>手机</th>
                 <th>邮箱</th>
                 <th>日期</th>
@@ -176,6 +178,7 @@ class SurveyListing extends React.Component {
               {this.state.surveys && this.state.surveys.map((survey) => (
                 <tr key={survey.id} onClick={ () => this.props.onSurveySelected(survey) }>
                   <td><input className="survey-checkbox" checked={this.state.allState} onChange={(e)=>this.onStateChange(survey, $(e.target).is(':checked'))} type="checkbox"/></td>
+                  <td>{survey.name}</td>
                   <td>{survey.mobile}</td>
                   <td>{survey.email}</td>
                   <td>{survey.date}</td>

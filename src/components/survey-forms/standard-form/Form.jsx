@@ -13,7 +13,8 @@ class Form extends React.PureComponent {
     ];
 
     this.model = {
-      questions: []
+      questions: [],
+      name: 'HIV血液快速自检阳性者服务项目调查问卷'
     };
     this.props.updateStore({
       ...this.model

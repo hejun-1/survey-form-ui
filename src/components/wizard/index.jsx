@@ -1,3 +1,3 @@
-import Wizard from './Wizard';
+import Survey from './Survey.jsx';
 
-export { Wizard };
+export { Survey };
