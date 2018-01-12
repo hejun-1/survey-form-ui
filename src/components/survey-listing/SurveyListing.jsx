@@ -123,7 +123,7 @@ class SurveyListing extends React.Component {
 
   getSurveyListing() {
     return new Promise((resolve) => {
-      const tags = this.filters.tags ? `&tags=${this.filters.tags}` : '';
+      const tags = '';//this.filters.tags ? `&tags=${this.filters.tags}` : '';
       $.get(`${endpoint}/surveys/${this.filters.status}?page=${this.page}${tags}`, (data) => {
         resolve(data);
       });
@@ -136,6 +136,16 @@ class SurveyListing extends React.Component {
   }
 
   render() {
+    /*
+     <div className="survey-section">
+     <label>检测包类型</label>
+     <select ref="packageTypeFilter" onChange={ this.onFilterPackageTypeChange }>
+     <option value="">全部</option>
+     <option value="干血斑型">干血斑型</option>
+     <option value="尿液型">尿液型</option>
+     </select>
+     </div>
+     */
     if (!this.state) return null;
     return (
       <div className="survey-container">
@@ -144,14 +154,6 @@ class SurveyListing extends React.Component {
           <select ref="statusFilter" onChange={ this.onFilterStatusChange }>
             <option value="pending">待处理</option>
             <option value="handled">已处理</option>
-          </select>
-        </div>
-        <div className="survey-section">
-          <label>检测包类型</label>
-          <select ref="packageTypeFilter" onChange={ this.onFilterPackageTypeChange }>
-            <option value="">全部</option>
-            <option value="干血斑型">干血斑型</option>
-            <option value="尿液型">尿液型</option>
           </select>
         </div>
         <div className="survey-section">

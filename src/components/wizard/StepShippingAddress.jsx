@@ -63,12 +63,13 @@ class StepShippingAddress extends React.PureComponent {
         validateError: '电话号码错误'
       });
       return false;
-    } else if (!this.email) {
-      this.setState({
-        validateError: '电子邮箱错误'
-      });
-      return false;
     }
+    // } else if (!this.email) {
+    //   this.setState({
+    //     validateError: '电子邮箱错误'
+    //   });
+    //   return false;
+    // }
     // } else if (!this.verifyCode) {
     //   this.setState({
     //     validateError: '验证码错误'
@@ -134,6 +135,9 @@ class StepShippingAddress extends React.PureComponent {
                   <div>
                     <label>邮箱:</label>
                     <input type="text" className="form-control" onChange={this.onEmailChange}/>
+                    <code>
+                      如果您上传的照片不合格，我们将优先使用邮件通知您，若无邮箱，则选用短信通知
+                    </code>
                   </div>
                   <div style={{display: "none"}}>
                     <label>验证码:</label>

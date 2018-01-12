@@ -26,7 +26,7 @@ ReactDOM.render(
                   <Route path="/" component={App}>
                     <IndexRedirect to="/survey" />
                   </Route>
-                  <Route path="/survey" component={Wizard}/>
+                  <Route path="/survey" component={Wizard} getData={() => new Promise((r) => r({}))}/>
                   <Route path="/report" component={ReportSearch}/>
                 </Router>,
                 rootContainer
