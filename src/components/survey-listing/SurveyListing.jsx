@@ -9,7 +9,14 @@ import './Surveys.css';
 
 const ENTER_KEY_CODE = 13;
 
-class SurveyListing extends React.Component {
+const filters = {
+  status: 'pending',
+  tags: null,
+  name: '',
+  page: 0
+};
+
+class SurveyListing extends React.PureComponent {
   constructor(props) {
     super(props);
     if (!this.props.session) {
@@ -18,12 +25,7 @@ class SurveyListing extends React.Component {
       this.state = {
         surveys: []
       };
-      this.filters = {
-        status: 'pending',
-        tags: null,
-        name: ''
-      };
-      this.page = 0;
+      this.filters = filters;
       this.selections = {};
       this.getSurveyListing = this.getSurveyListing.bind(this);
       this.onFilterStatusChange = this.onFilterStatusChange.bind(this);
@@ -76,31 +78,31 @@ class SurveyListing extends React.Component {
   }
 
   nextPage() {
-    if (this.page < this.totalPages) {
-      this.page++;
+    if (this.filters.page < this.totalPages) {
+      this.filters.page++;
       this.getSurveyListing();
     }
   }
 
   prePage() {
-    if (this.page > 0) {
-      this.page--;
+    if (this.filters.page > 0) {
+      this.filters.page--;
       this.getSurveyListing();
     }
   }
 
   lastPage() {
-    this.page = this.totalPages - 1;
+    this.filters.page = this.totalPages - 1;
     this.getSurveyListing();
   }
 
   firstPage() {
-    this.page = 0;
+    this.filters.page = 0;
     this.getSurveyListing();
   }
 
   jumpTo(page) {
-    this.page = page;
+    this.filters.page = page;
     this.getSurveyListing();
   }
 
@@ -127,7 +129,7 @@ class SurveyListing extends React.Component {
     return new Promise((resolve) => {
       const tags = this.filters.tags ? `&tags=${this.filters.tags}` : '';
       const surveyName = this.filters.name;
-      $.get(`${endpoint}/surveys/${this.filters.status}?page=${this.page}&name=${surveyName}${tags}`, (data) => {
+      $.get(`${endpoint}/surveys/${this.filters.status}?page=${this.filters.page}&name=${surveyName}${tags}`, (data) => {
         resolve(data);
       });
     }).then((data)=>{
@@ -145,16 +147,16 @@ class SurveyListing extends React.Component {
         <div className="survey-section">
           <label>调查问卷名称</label>
           <select onChange={ this.onFilterSurveyNameChange }>
-            <option value="">全部</option>
-            <option value="HIV血液快速自检阳性者服务项目调查问卷">HIV血液快速自检阳性者服务项目调查问卷</option>
-            <option value="网购自我检测调查问卷">网购自我检测调查问卷</option>
+            <option selected={this.filters.name == ""} value="">全部</option>
+            <option selected={this.filters.name == "HIV血液快速自检阳性者服务项目调查问卷"} value="HIV血液快速自检阳性者服务项目调查问卷">HIV血液快速自检阳性者服务项目调查问卷</option>
+            <option selected={this.filters.name == "网购自我检测调查问卷"} value="网购自我检测调查问卷">网购自我检测调查问卷</option>
           </select>
         </div>
         <div className="survey-section">
           <label>状态</label>
           <select ref="statusFilter" onChange={ this.onFilterStatusChange }>
-            <option value="pending">待处理</option>
-            <option value="handled">已处理</option>
+            <option selected={this.filters.status == "pending"} value="pending">待处理</option>
+            <option selected={this.filters.status == "handled"} value="handled">已处理</option>
           </select>
         </div>
         <div className="survey-section">
@@ -196,7 +198,7 @@ class SurveyListing extends React.Component {
             <li>跳转到<input onKeyDown={this.onKeyDown} className="form-control pagination-page-index"/>页</li>
             <li><a onClick={this.nextPage} href="javascript:void(0)"><span className="glyphicon glyphicon-chevron-right"></span></a></li>
             <li><a onClick={this.lastPage} href="javascript:void(0)"><span className="glyphicon glyphicon-forward"></span></a></li>
-            {this.page+1}/{this.totalPages}
+            {this.filters.page+1}/{this.totalPages}
           </ul>
         </div>
       </div>
