@@ -7,10 +7,6 @@ import './Form.css';
 class Form extends React.PureComponent {
   constructor(props) {
     super(props);
-    this.options = [
-      {label: 'Option A', value: 'A'},
-      {label: 'Option B', value: 'B'}
-    ];
 
     this.model = {
       questions: [],
