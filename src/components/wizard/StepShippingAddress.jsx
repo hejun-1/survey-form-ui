@@ -92,7 +92,7 @@ class StepShippingAddress extends React.PureComponent {
               validateError: '提交失败,请重试或者联系我们解决'
             });
             reject();
-          } else if (data.responseText == 'SUCCESS') {
+          } else if (data.responseText.indexOf('SUCCESS') != -1) {
             resolve();
           } else {
             this.setState({
@@ -112,7 +112,7 @@ class StepShippingAddress extends React.PureComponent {
           <div>
             <div className="wizard-step-header">
               <label className="col-md-12 control-label">
-                <h2>第四步: 填写收货地址及联系方式</h2>
+                <h2>第{this.props.index}步: 填写收货地址及联系方式</h2>
                 <h4>请务必保证您的<code>收货地址</code>以及<code>电话号码</code>正确</h4>
                 {
                   this.state.validateError && <div className={"validate-error"}>

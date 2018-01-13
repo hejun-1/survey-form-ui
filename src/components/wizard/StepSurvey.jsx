@@ -20,7 +20,7 @@ class StepSurvey extends React.PureComponent {
                 项目截止日期是2017年12月31日，回寄样本的截止日期是2018年1月31日
               </code>
               <label className="col-md-12 control-label">
-                <h2>第二步: 自采样送检调查问卷</h2>
+                <h2>第{this.props.index}步: 自采样送检调查问卷</h2>
               </label>
             </div>
             <div className="row">

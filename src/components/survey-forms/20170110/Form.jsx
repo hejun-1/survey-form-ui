@@ -10,7 +10,7 @@ class Form extends React.PureComponent {
 
     this.model = {
       questions: [],
-      name: '网购自我检测调查问卷'
+      name: '中艾协自检人群有赏问卷调查项目'
     };
     this.props.updateStore({
       ...this.model

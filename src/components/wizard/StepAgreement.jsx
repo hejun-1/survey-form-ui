@@ -43,7 +43,7 @@ class StepAgreement extends React.PureComponent {
                 项目截止日期是2018年2月28日，回寄样本的截止日期是2018年3月31日
               </code>
               <label className="col-md-12 control-label">
-                <h2>第一步: 项目介绍及知情同意书</h2>
+                <h2>第{this.props.index}步: 项目介绍及知情同意书</h2>
                 <h4>请仔细阅读并且选择<code>"同意"</code>选项后进行下一步</h4>
               </label>
             </div>

@@ -1,7 +1,8 @@
 import React from 'react';
 import {Uploader} from 'react-file-upload';
-import {FileUploader} from '../file-uploader';
-import endpoint from '../../backend';
+import {FileUploader} from '../../file-uploader';
+import endpoint from '../../../backend';
+import service from '../../../service.jsx';
 
 class StepUploadPicture extends React.PureComponent {
   constructor(props) {
@@ -10,7 +11,8 @@ class StepUploadPicture extends React.PureComponent {
     this.onSuccess = this.onSuccess.bind(this);
     this.pictureUrl = null;
     this.state = {
-      validateError: false
+      validateError: false,
+      errorMessage: null
     }
   }
 
@@ -33,8 +35,18 @@ class StepUploadPicture extends React.PureComponent {
       this.setState({
         validateError: true
       });
+      return false;
     }
-    return isValidated;
+    const store = this.props.getStore();
+    store.tags = store.questions.map((q) => q.value).filter((t) => t && t.length > 0);
+    return service.submit(store).then((seqNo) => {
+      store.seqNo = seqNo;
+    }).catch((error) => {
+      this.setState({
+        errorMessage: error
+      });
+      return Promise.reject();
+    });
   }
 
   render() {
@@ -52,6 +64,7 @@ class StepUploadPicture extends React.PureComponent {
                 }
 
               </label>
+                {this.state.errorMessage && <code>{this.state.errorMessage}</code>}
               <div className="wizard-card wizard-scroll-container">
                 <FileUploader onSuccess={this.onSuccess} onError={this.onError} uploadUrl={`${endpoint}/pictures`}/>
               </div>

@@ -149,7 +149,7 @@ class SurveyListing extends React.PureComponent {
           <select onChange={ this.onFilterSurveyNameChange }>
             <option selected={this.filters.name == ""} value="">全部</option>
             <option selected={this.filters.name == "HIV血液快速自检阳性者服务项目调查问卷"} value="HIV血液快速自检阳性者服务项目调查问卷">HIV血液快速自检阳性者服务项目调查问卷</option>
-            <option selected={this.filters.name == "网购自我检测调查问卷"} value="网购自我检测调查问卷">网购自我检测调查问卷</option>
+            <option selected={this.filters.name == "中艾协自检人群有赏问卷调查项目"} value="中艾协自检人群有赏问卷调查项目">中艾协自检人群有赏问卷调查项目</option>
           </select>
         </div>
         <div className="survey-section">
@@ -169,6 +169,7 @@ class SurveyListing extends React.PureComponent {
               <tr>
                 <th><input type="checkbox" onChange={(e)=>this.proceedAll($(e.target).is(':checked'))}/></th>
                 <th>问卷名称</th>
+                <th>序号</th>
                 <th>手机</th>
                 <th>邮箱</th>
                 <th>日期</th>
@@ -181,6 +182,7 @@ class SurveyListing extends React.PureComponent {
                 <tr key={survey.id} onClick={ () => this.props.onSurveySelected(survey) }>
                   <td><input className="survey-checkbox" checked={this.state.allState} onChange={(e)=>this.onStateChange(survey, $(e.target).is(':checked'))} type="checkbox"/></td>
                   <td>{survey.name}</td>
+                  <td>{survey.seqNo}</td>
                   <td>{survey.mobile}</td>
                   <td>{survey.email}</td>
                   <td>{survey.date}</td>

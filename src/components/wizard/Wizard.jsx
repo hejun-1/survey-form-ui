@@ -22,7 +22,7 @@ class Wizard extends React.PureComponent {
 
   render() {
     const steps = this.props.steps.map((Step, i) => {
-      return  {name: i.toString(), component: <Step getStore={() => (this.getStore())} updateStore={(u) => {this.updateStore(u)}} />}
+      return  {name: (i + 1).toString(), component: <Step index={i + 1} getStore={() => (this.getStore())} updateStore={(u) => {this.updateStore(u)}} />}
     });
 
     return (

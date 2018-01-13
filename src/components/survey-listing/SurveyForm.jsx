@@ -15,6 +15,9 @@ class SurveyForm extends React.Component {
           <Link to="/listing"><button className="btn btn-default">返回</button></Link>
         </div>
         <div className="section">
+          <div><label>问卷名称:</label><span>{this.props.survey.name}</span></div>
+          <div><label>序号:</label><span>{this.props.survey.seqNo}</span></div>
+          <div><label>用户识别号:</label><span>{this.props.survey.userId}</span></div>
           <div><label>填报者手机:</label><span>{this.props.survey.mobile}</span></div>
           <div><label>电子邮箱:</label><span>{this.props.survey.email}</span></div>
           <div><label>填报日期:</label><span>{this.props.survey.date}</span></div>
