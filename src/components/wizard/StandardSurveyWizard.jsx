@@ -8,7 +8,7 @@ import StepShippingAddress from './StepShippingAddress';
 import StepComplete from './StepComplete';
 
 const steps = [
-  StepAgreement, StepSurvey, StepShippingAddress, StepComplete
+  StepAgreement, StepSurvey, StepUploadPicture, StepShippingAddress, StepComplete
 ];
 
 const SurveyWizard = () => <Wizard steps={steps}/>;
