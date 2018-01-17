@@ -1,6 +1,7 @@
 import React from 'react';
 import { Form } from '../../survey-forms/20170110';
 import ReactTooltip from 'react-tooltip';
+import service from '../../../service.jsx';
 
 class StepSurvey extends React.PureComponent {
   constructor(props) {
@@ -18,6 +19,22 @@ class StepSurvey extends React.PureComponent {
       ...this.props.getStore(),
       userId: evt.target.value
     });
+
+    if (!evt.target.value) {
+      this.setState({
+        validateStateClass: 'validate-error'
+      });
+    } else {
+      service.validateUserId('中国疾控中心-中国性病艾滋病防治协会自检人群匿名有奖问卷调查项目', evt.target.value).then(() => {
+        this.setState({
+          validateStateClass: ''
+        });
+      }).catch(() => {
+        this.setState({
+          validateStateClass: 'validate-error'
+        });
+      });
+    }
   }
 
   isValidated() {
@@ -27,14 +44,13 @@ class StepSurvey extends React.PureComponent {
       });
       return false;
     }
-    return true;
+    return service.validateUserId('中国疾控中心-中国性病艾滋病防治协会自检人群匿名有奖问卷调查项目', this.props.getStore().userId);
   }
 
   getHowToGetWeChatId() {
     const html = '1. 关注“仁爱康联”公众号（出示仁爱康联公众号二维码）<br/>2. 打开仁爱康联公众号，点击菜单栏“我的商城”, 点击菜<br/>单栏“会员主页”获取ID（ID在头像右边)';
     return html;
   }
-
 
   render() {
     return (
@@ -59,7 +75,7 @@ class StepSurvey extends React.PureComponent {
                         <code data-tip={this.getHowToGetWeChatId()} className="glyphicon glyphicon-question-sign" style={{cursor: "pointer"}}>如何查看自己的微信商城ID</code>
                         <ReactTooltip multiline={true} place="bottom" type="dark" effect="float"/>
                       </label>
-                      <div className="ui form"><input className="form-control" onChange={this.onUserIdChange}/></div>
+                      <div className="ui form"><input placeholder="请输入你的微信商城ID, 每个ID仅能提交一次问卷" className="form-control" onBlur={this.onUserIdChange} onChange={this.onUserIdChange}/></div>
                     </div>
                   </div>
                   <Form getStore={() => (this.props.getStore())} updateStore={(u) => {this.props.updateStore(u)}}></Form>

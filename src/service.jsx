@@ -2,6 +2,22 @@ import endpoint from './backend';
 import $ from 'jquery';
 
 const service = {
+  validateUserId: (surveyName, userId) => {
+    return new Promise((resolve, reject) => {
+      $.ajax({
+        url: `${endpoint}/surveys/${surveyName}/users/${userId}`,
+        type: 'GET',
+        complete: (data) => {
+          if (data.statusText == 'error' || data.responseText === userId) {
+            reject();
+          } else {
+            resolve();
+          }
+        }
+      });
+    });
+  },
+
   submit: (store) => {
     return new Promise((resolve, reject) => {
       $.ajax({

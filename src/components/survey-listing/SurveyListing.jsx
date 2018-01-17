@@ -149,7 +149,7 @@ class SurveyListing extends React.PureComponent {
           <select onChange={ this.onFilterSurveyNameChange }>
             <option selected={this.filters.name == ""} value="">全部</option>
             <option selected={this.filters.name == "HIV血液快速自检阳性者服务项目调查问卷"} value="HIV血液快速自检阳性者服务项目调查问卷">HIV血液快速自检阳性者服务项目调查问卷</option>
-            <option selected={this.filters.name == "中艾协自检人群有赏问卷调查项目"} value="中艾协自检人群有赏问卷调查项目">中艾协自检人群有赏问卷调查项目</option>
+            <option selected={this.filters.name == "中国疾控中心-中国性病艾滋病防治协会自检人群匿名有奖问卷调查项目"} value="中国疾控中心-中国性病艾滋病防治协会自检人群匿名有奖问卷调查项目">中国疾控中心-中国性病艾滋病防治协会自检人群匿名有奖问卷调查项目</option>
           </select>
         </div>
         <div className="survey-section">
