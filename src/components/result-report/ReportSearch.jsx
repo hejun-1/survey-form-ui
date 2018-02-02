@@ -20,7 +20,7 @@ class ReportSearch extends React.PureComponent {
       url: `${endpoint}/reports/${this.refs.number.value}`,
       dataType: 'json',
       success: (data) => {
-        const reportData = JSON.parse(unescape(data.data));
+        const reportData = JSON.parse(unescape(data.data).replace('\n', ''));
         this.setState({
           reportData,
           error: null

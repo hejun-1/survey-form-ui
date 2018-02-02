@@ -6,7 +6,7 @@ class Question extends React.PureComponent {
     this.onChange = this.onChange.bind(this);
     this.state = {
       value: ""
-    }
+    };
     this.props.onChange({ question: this.props.label, value: null });
   }
 

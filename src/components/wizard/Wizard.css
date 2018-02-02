@@ -8,6 +8,13 @@
   height: auto;
 }
 
+.wizard-collapse-button {
+  padding-left: 10px;
+  font-size: 12px;
+  color: darkgrey;
+  cursor: pointer;
+}
+
 .validate-error {
   border: 0.2em solid indianred;
   margin: 5px 5px 5px 5px;

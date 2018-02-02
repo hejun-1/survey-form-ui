@@ -1,6 +1,5 @@
 import React from 'react';
 import { Form } from '../../survey-forms/20170110';
-import ReactTooltip from 'react-tooltip';
 import service from '../../../service.jsx';
 
 class StepSurvey extends React.PureComponent {
@@ -8,10 +7,26 @@ class StepSurvey extends React.PureComponent {
     super(props);
 
     this.state = {
-      validateStateClass: ''
+      validateStateClass: '',
+      showStatements: false
     };
 
     this.onUserIdChange = this.onUserIdChange.bind(this);
+    this.onPhoneChange = this.onPhoneChange.bind(this);
+    this.toggleStatement = this.toggleStatement.bind(this);
+  }
+
+  toggleStatement(state) {
+    this.setState({
+      showStatements: state
+    });
+  }
+
+  onPhoneChange(evt) {
+    this.props.updateStore({
+      ...this.props.getStore(),
+      mobile: evt.target.value
+    });
   }
 
   onUserIdChange(evt) {
@@ -47,11 +62,6 @@ class StepSurvey extends React.PureComponent {
     return service.validateUserId('中国疾控中心-中国性病艾滋病防治协会自检人群匿名有奖问卷调查项目', this.props.getStore().userId);
   }
 
-  getHowToGetWeChatId() {
-    const html = '1. 关注“仁爱康联”公众号（出示仁爱康联公众号二维码）<br/>2. 打开仁爱康联公众号，点击菜单栏“我的商城”, 点击菜<br/>单栏“会员主页”获取ID（ID在头像右边)';
-    return html;
-  }
-
   render() {
     return (
       <div>
@@ -70,13 +80,13 @@ class StepSurvey extends React.PureComponent {
                 <div className="wizard-card wizard-scroll-container">
                   <div className={this.state.validateStateClass}>
                     <div className="question">
-                      <label>你的微信商城ID</label>
-                      <label>
-                        <code data-tip={this.getHowToGetWeChatId()} className="glyphicon glyphicon-question-sign" style={{cursor: "pointer"}}>如何查看自己的微信商城ID</code>
-                        <ReactTooltip multiline={true} place="bottom" type="dark" effect="float"/>
-                      </label>
-                      <div className="ui form"><input placeholder="请输入你的微信商城ID, 每个ID仅能提交一次问卷" className="form-control" onBlur={this.onUserIdChange} onChange={this.onUserIdChange}/></div>
+                      <label>您的支付宝账号</label>
+                      <div className="ui form"><input placeholder="每个支付宝账号ID仅能提交一次问卷" className="form-control" onBlur={this.onUserIdChange} onChange={this.onUserIdChange}/></div>
                     </div>
+                  </div>
+                  <div className="question">
+                    <label>您的手机号码</label>
+                    <div className="ui form"><input placeholder="选填，填写后可收到奖励发放通知" className="form-control" onBlur={this.onPhoneChange} onChange={this.onPhoneChange}/></div>
                   </div>
                   <Form getStore={() => (this.props.getStore())} updateStore={(u) => {this.props.updateStore(u)}}></Form>
                 </div>

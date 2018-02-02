@@ -1,0 +1,14 @@
+.survey-qr-code-line {
+  height:1px;
+  border:none;
+  border-top:1px dashed #0066CC;
+}
+
+.survey-qr-code {
+  max-width: 632px;
+  max-height: 321px;
+}
+
+.survey-qr-code-wrapper {
+  text-align: center;
+}

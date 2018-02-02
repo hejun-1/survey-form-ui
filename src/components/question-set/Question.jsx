@@ -39,9 +39,15 @@ class Question extends React.PureComponent {
             <div key={`qs-${index}`} className="qs-line">
               <div className="qs-label">{option.label}</div>
               <div className="ui form">
-                <input className="form-control" onChange={(evt) => {
-                  this.onSingleInputChange(option.label, evt.target.value);
-                }}/>
+                <select
+                  className="form-control"
+                  onChange={(evt) => {
+                    this.onSingleInputChange(option.label, evt.target.value);
+                  }}>
+                  {
+                    Array(5).fill(0).map((v, i) => <option key={i} value={i+1}>{i+1}</option>)
+                  }
+                </select>
               </div>
             </div>
           )
