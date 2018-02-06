@@ -80,8 +80,8 @@ class StepSurvey extends React.PureComponent {
                 <div className="wizard-card wizard-scroll-container">
                   <div className={this.state.validateStateClass}>
                     <div className="question">
-                      <code class="tishi">由于支付宝转账规则变更，现领取红包必须留手机或邮箱帐号，在2月3日-2月5日申请“20元红包奖励”的用户，若未留手机或邮箱帐号的用户请重新申请，2月5日起，请申请“20元红包奖励”的用户务必填写【手机或邮箱帐号】，未填写则无法发放，尽情留意
-                      </code>
+                      <code class="tishi">注意：<br></br>1、填问卷时请留下真实有效的支付宝帐号（必须是邮箱或手机支付宝帐号，否则无法收到红包）<br></br>2、红包为人工发放，发放时间为2个工作日内（春节期间2月15日至2月22日的红包将于2月23日统一发放）<br></br>3、公众号回复数字“12”可以填写另一份问卷,免费领取传递检测一份哦~<br></br>
+</code>
                       <br></br>
                       <label>您的支付宝账号</label>
                       <div className="ui form"><input placeholder="每个支付宝账号ID仅能提交一次问卷" className="form-control" onBlur={this.onUserIdChange} onChange={this.onUserIdChange}/></div>
