@@ -1,6 +1,7 @@
 import React from 'react';
 import { Form } from '../../survey-forms/20180401';
 import service from '../../../service.jsx';
+import { QRCode } from '../../qr-code';
 
 let form = null;
 
@@ -81,6 +82,7 @@ class StepSurvey extends React.PureComponent {
               <div className="col-md-12">
                 <div className="wizard-card wizard-scroll-container">
                   <div>
+                    <code>本次调查问卷前250人可获取10元红包奖励。调查问卷于2018年4月3日开始到2018年4月17日结束</code>
                     <p>
                       “自采尿液送检HIV”是一种既能最大程度保护个人隐私，又能及早知晓自己感染状况的匿名检测方式。
                       学生可在高校自助售货机购买或相关机构免费领取尿液HIV筛查服务包，
@@ -92,11 +94,12 @@ class StepSurvey extends React.PureComponent {
                     </p>
                   </div>
                   <div className={`question ${this.state.validateStateClass}`}>
-                    <label>微信商城ID <span onClick={this.toggleStatement} className="glyphicon glyphicon-question-sign" style={{"cursor": "pointer"}}></span></label>
+                    <label onClick={this.toggleStatement} >微信商城ID (点击查看如何获取<span className="glyphicon glyphicon-question-sign" style={{"cursor": "pointer"}}></span>)</label>
                     {this.state.statementToggle && <code>
-                      <p>1. 进入“仁爱康联”公众号，点击底部菜单“我的商城”</p>
-                      <p>2. 商城底部菜单，点击“会员主页”</p>
-                      <p>3. 头像右边的ID即“商城ID”</p>
+                      <p>1. 关注公众号<QRCode/></p>
+                      <p>2. 进入“仁爱康联”公众号，点击底部菜单“我的商城”</p>
+                      <p>3. 商城底部菜单，点击“会员主页”</p>
+                      <p>4. 头像右边的ID即“商城ID”</p>
                     </code>}
                     <div className="ui form"><input placeholder="微信商城ID仅能提交一次问卷" className="form-control" onBlur={this.onUserIdChange} onChange={this.onUserIdChange}/></div>
                   </div>

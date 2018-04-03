@@ -150,6 +150,10 @@ class SurveyListing extends React.PureComponent {
             <option selected={this.filters.name == ""} value="">全部</option>
             <option selected={this.filters.name == "HIV血液快速自检阳性者服务项目调查问卷"} value="HIV血液快速自检阳性者服务项目调查问卷">HIV血液快速自检阳性者服务项目调查问卷</option>
             <option selected={this.filters.name == "中国疾控中心-中国性病艾滋病防治协会自检人群匿名有奖问卷调查项目"} value="中国疾控中心-中国性病艾滋病防治协会自检人群匿名有奖问卷调查项目">中国疾控中心-中国性病艾滋病防治协会自检人群匿名有奖问卷调查项目</option>
+            <option selected={this.filters.name == "自采尿液送检HIV问卷调查-昆明医科大学"} value="自采尿液送检HIV问卷调查-昆明医科大学">自采尿液送检HIV问卷调查-昆明医科大学</option>
+            <option selected={this.filters.name == "自采尿液送检HIV问卷调查-昆明学院"} value="自采尿液送检HIV问卷调查-昆明学院">自采尿液送检HIV问卷调查-昆明学院</option>
+            <option selected={this.filters.name == "自采尿液送检HIV问卷调查-北京航空航天大学"} value="自采尿液送检HIV问卷调查-北京航空航天大学">自采尿液送检HIV问卷调查-北京航空航天大学</option>
+            <option selected={this.filters.name == "自采尿液送检HIV问卷调查-北京信息科技大学"} value="自采尿液送检HIV问卷调查-北京信息科技大学">自采尿液送检HIV问卷调查-北京信息科技大学</option>
           </select>
         </div>
         <div className="survey-section">

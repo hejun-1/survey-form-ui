@@ -56,9 +56,6 @@ class StepComplete extends React.PureComponent {
                       <li>
                         邮件：kefu@renaijiance.com
                       </li>
-                      <li>
-                        公众号内留言（请注明支付宝账号以及问卷编号）
-                      </li>
                     </ul>
                   </p>
                 </div>
