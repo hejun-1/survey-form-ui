@@ -80,7 +80,7 @@ class StepSurvey extends React.PureComponent {
                 <div className="wizard-card wizard-scroll-container">
                   <div className={this.state.validateStateClass}>
                     <div className="question">
-                      <code class="tishi">注意：<br></br>1、填问卷时请留下真实有效的支付宝帐号（必须是邮箱或手机支付宝帐号，否则无法收到红包）<br></br>2、红包为人工发放，发放时间为2个工作日内（春节期间2月15日至2月22日的红包将于2月23日统一发放）<br></br>3、公众号回复数字“12”可以填写另一份问卷,免费领取传递检测一份哦~<br></br>
+                      <code class="tishi">注意：<br></br>1、填问卷时请留下真实有效的支付宝帐号（必须是邮箱或手机支付宝帐号，否则无法收到红包）<br></br>2、红包为人工发放，2个工作日内到账<br></br>
 </code>
                       <br></br>
                       <label>您的支付宝账号</label>
