@@ -1,16 +1,5 @@
 import React from 'react';
 
-import Wizard from './Wizard';
-import StepAgreement from './StepAgreement';
-import StepSurvey from './StepSurvey';
-import StepUploadPicture from './StepUploadPicture';
-import StepShippingAddress from './StepShippingAddress';
-import StepComplete from './StepComplete';
+import StepClosed from './StepClosed';
 
-const steps = [
-  StepAgreement, StepSurvey, StepUploadPicture, StepShippingAddress, StepComplete
-];
-
-const SurveyWizard = () => <Wizard steps={steps}/>;
-
-export default SurveyWizard;
+export default StepClosed;
