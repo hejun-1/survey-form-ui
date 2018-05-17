@@ -69,7 +69,7 @@ class StepSurvey extends React.PureComponent {
           <div>
             <div className="wizard-step-header">
               <code>
-                本次调查问卷前1500人可获取20元红包奖励!
+                本次调查问卷前500人可获取20元红包奖励!
               </code>
               <label className="col-md-12 control-label">
                 <h2>第{this.props.index}步: 填写调查问卷</h2>
