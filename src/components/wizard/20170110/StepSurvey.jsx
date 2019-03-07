@@ -12,7 +12,7 @@ class StepSurvey extends React.PureComponent {
     };
 
     this.onUserIdChange = this.onUserIdChange.bind(this);
-    this.onPhoneChange = this.onPhoneChange.bind(this);
+    this.onSNChange = this.onPhoneChange.bind(this);
     this.toggleStatement = this.toggleStatement.bind(this);
   }
 

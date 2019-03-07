@@ -1,9 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, Route, hashHistory, IndexRedirect, browserHistory } from 'react-router';
+import { Router, Route, hashHistory, IndexRedirect } from 'react-router';
 import { Survey } from './components/wizard';
 import { ReportSearch } from './components/result-report';
-import { Menu } from './components/menu';
 
 class App extends React.Component {
   constructor(props) {
@@ -22,7 +21,7 @@ class App extends React.Component {
 const rootContainer = document.getElementById('app-container');
 
 ReactDOM.render(
-                <Router history={browserHistory}>
+                <Router history={hashHistory}>
                   <Route path="/" component={App}>
                     <IndexRedirect to="/survey" />
                   </Route>
