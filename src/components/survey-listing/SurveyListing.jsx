@@ -154,6 +154,7 @@ class SurveyListing extends React.PureComponent {
             <option selected={this.filters.name == "自采尿液送检HIV问卷调查-昆明学院"} value="自采尿液送检HIV问卷调查-昆明学院">自采尿液送检HIV问卷调查-昆明学院</option>
             <option selected={this.filters.name == "自采尿液送检HIV问卷调查-北京航空航天大学"} value="自采尿液送检HIV问卷调查-北京航空航天大学">自采尿液送检HIV问卷调查-北京航空航天大学</option>
             <option selected={this.filters.name == "自采尿液送检HIV问卷调查-北京信息科技大学"} value="自采尿液送检HIV问卷调查-北京信息科技大学">自采尿液送检HIV问卷调查-北京信息科技大学</option>
+            <option selected={this.filters.name == "中美疾控中心酒吧MSM项目"} value="中美疾控中心酒吧MSM项目">中美疾控中心酒吧MSM项目</option>
           </select>
         </div>
         <div className="survey-section">

@@ -4,7 +4,10 @@ const path = require('path');
 
 module.exports = function () {
   return webpackMerge(baseConfig, {
-    entry: './src/application.jsx',
+    entry: {
+      main: ['./src/application.jsx'],
+      vendor: ['react']
+    },
     output: {
       filename: 'bundle.js',
       chunkFilename: '[id].chunk.js',

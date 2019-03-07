@@ -10,6 +10,12 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env.ENDPOINT': JSON.stringify(ENDPOINT)
     }),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false
+      }
+    }),
+    new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.bundle.js' })
   ],
   devServer: {
     historyApiFallback: true,

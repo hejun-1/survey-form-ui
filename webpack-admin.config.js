@@ -5,7 +5,8 @@ const path = require('path');
 module.exports = function () {
   return webpackMerge(baseConfig, {
     entry: {
-      main: ['./src/admin-application.jsx']
+      main: ['./src/admin-application.jsx'],
+      vendor: ['react']
     },
     output: {
       filename: 'bundle.js',

@@ -29,7 +29,16 @@ class StepSurvey extends React.PureComponent {
             });
             return false;
         }
-        return true;
+        const store = this.props.getStore();
+        store.tags = store.questions.map((q) => q.value).filter((t) => t && t.length > 0);
+        return service.submit(store).then((seqNo) => {
+            store.seqNo = seqNo;
+        }).catch((error) => {
+            this.setState({
+                errorMessage: error
+            });
+            return Promise.reject();
+        });
     }
 
     render() {

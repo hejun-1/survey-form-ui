@@ -7,7 +7,7 @@ cp default.conf.template default.conf
 
 sed -i "" "s/___API_ENDPOINT_IP___/$API_ENDPOINT_IP/g" default.conf || sed -i "s/___API_ENDPOINT_IP___/$API_ENDPOINT_IP/g" default.conf
 
-npm install
+yarn install
 
 export ENDPOINT=http://m.renaijiance.com:81/api
 export APP_ENV=admin
@@ -22,4 +22,4 @@ export APP_ENV=consumer
 
 npm run build
 
-docker build --no-cache=true -f Dockerfile -t registry.cn-beijing.aliyuncs.com/stardust/survey-form-ui:latest ./
+docker build --no-cache=true -f Dockerfile -t registry.cn-hangzhou.aliyuncs.com/stardust/survey-form-ui-new:latest ./
