@@ -6,6 +6,7 @@ COPY ./dist/bundle.js /usr/share/nginx/html/
 COPY ./dist/vendor.bundle.js /usr/share/nginx/html/
 COPY ./index.html /usr/share/nginx/html/
 COPY ./dist/admin.bundle.js /usr/share/nginx/html/admin
+COPY ./dist/vendor.bundle.js /usr/share/nginx/html/admin
 COPY ./admin-index.html /usr/share/nginx/html/admin
 COPY default.conf /etc/nginx/conf.d/
 
