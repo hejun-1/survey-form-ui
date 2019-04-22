@@ -15,7 +15,13 @@ class ReportViewer extends React.PureComponent {
         label: "尿HIV抗体检测",
         idx: "method_2",
         base: "阴性"
-      }];
+      },
+      {
+        label: "HIV抗体检测",
+        idx: "method_3",
+        base: "阴性"
+      }
+    ];
     return (
       <div className="report-content ">
         <div>
