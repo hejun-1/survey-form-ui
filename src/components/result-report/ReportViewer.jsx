@@ -1,4 +1,5 @@
 import React from 'react';
+// import LANG from './langEN';
 
 class ReportViewer extends React.PureComponent {
   constructor(props) {
@@ -7,38 +8,38 @@ class ReportViewer extends React.PureComponent {
   render() {
     const items = [
       {
-        label: "HIV-DNA定性检测",
+        label: LANG["HIV_DNA_QUALITATIVE_TEST"],
         idx: "method_6",
-        base: "阴性"
+        base: LANG["NEGATIVE"]
       },
       {
-        label: "尿HIV抗体检测",
+        label: LANG["URINE_HIV_ANTIBODY_TEST"],
         idx: "method_2",
-        base: "阴性"
+        base: LANG["NEGATIVE"]
       },
       {
-        label: "HIV抗体检测",
+        label: LANG["HIV_ANTIBODY_TEST"],
         idx: "method_3",
-        base: "阴性"
+        base: LANG["NEGATIVE"]
       }
     ];
     return (
       <div className="report-content ">
         <div>
           <div className="report-section">
-            <div className="report-statement-item"><span className="report-label">样本代码:</span><span>{this.props.model.ExaminationNumber}</span></div>
-            <div className="report-statement-item"><span className="report-label">样本类型:</span><span>{this.props.model.SpecimenType}</span></div>
-            <div className="report-statement-item"><span className="report-label">检测方法:</span><span>{this.props.model.ExaminationMethod}</span></div>
-            <div className="report-statement-item"><span className="report-label">送检方式:</span><span>{this.props.model.ReceiveMethod}</span></div>
-            <div className="report-statement-item"><span className="report-label">检测机构:</span><span>{this.props.model.LibraryName}</span></div>
+            <div className="report-statement-item"><span className="report-label">{LANG["SAMPLE_CODE"]}</span><span>{this.props.model.ExaminationNumber}</span></div>
+            <div className="report-statement-item"><span className="report-label">{LANG["SAMPLE_TYPE"]}</span><span>{this.props.model.SpecimenType}</span></div>
+            <div className="report-statement-item"><span className="report-label">{LANG["TEST_METHOD"]}</span><span>{this.props.model.ExaminationMethod}</span></div>
+            <div className="report-statement-item"><span className="report-label">{LANG["TEST_DELIVERY_METHOD"]}</span><span>{this.props.model.ReceiveMethod}</span></div>
+            <div className="report-statement-item"><span className="report-label">{LANG["TEST_INSTITUTION"]}</span><span>{this.props.model.LibraryName}</span></div>
           </div>
           <div className="table-responsive">
             <table className="table table-striped">
               <thead>
               <tr>
-                <th>检测项目</th>
-                <th>结果</th>
-                <th>参考值</th>
+                <th>{LANG["TEST_ITEM"]}</th>
+                <th>{LANG["RESULT"]}</th>
+                <th>{LANG["REFERENCE_VALUE"]}</th>
               </tr>
               </thead>
               <tbody>
@@ -46,7 +47,7 @@ class ReportViewer extends React.PureComponent {
                   items.map((item) => {
                     const result = this.props.model[item.idx + '_result'];
                     if (result) {
-                      const className = result === '阴性' ? 'result-green' : 'result-red';
+                      const className = result === LANG["NEGATIVE"] ? 'result-green' : 'result-red';
                       return (
                         <tr key={item.idx}>
                           <td>{item.label}</td>
@@ -61,11 +62,11 @@ class ReportViewer extends React.PureComponent {
             </table>
           </div>
           <div className="report-section">
-            <div className="report-statement-item"><span className="report-label">检测人:</span><span>{this.props.model.Tester}</span></div>
-            <div className="report-statement-item"><span className="report-label">收样日期:</span><span>{this.props.model.ReceiveYear}年{this.props.model.ReceiveMonth}月{this.props.model.ReceiveDay || '  '}日</span></div>
-            <div className="report-statement-item"><span className="report-label">报告日期:</span><span>{this.props.model.TestYear}年{this.props.model.TestMonth}月{this.props.model.TestDate || '  '}日</span></div>
+            <div className="report-statement-item"><span className="report-label">{LANG["TEST_PEOPLE"]}</span><span>{this.props.model.Tester}</span></div>
+            <div className="report-statement-item"><span className="report-label">{LANG["SAMPLE_RECEIVE_DATE"]}</span><span>{this.props.model.ReceiveYear}{LANG["YEAR"]}{this.props.model.ReceiveMonth}{LANG["MONTH"]}{this.props.model.ReceiveDay || '  '}{LANG["DAY"]}</span></div>
+            <div className="report-statement-item"><span className="report-label">{LANG["REPORT_DATE"]}</span><span>{this.props.model.TestYear}{LANG["YEAR"]}{this.props.model.TestMonth}{LANG["MONTH"]}{this.props.model.TestDate || '  '}{LANG["DAY"]}</span></div>
             <div className="report-statement-item">
-              <span className="report-label">备注:</span><span>{this.props.model.Comment}</span>
+              <span className="report-label">{LANG["NOTE"]}</span><span>{this.props.model.Comment}</span>
             </div>
           </div>
         </div>

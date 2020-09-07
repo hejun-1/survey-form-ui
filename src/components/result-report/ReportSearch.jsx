@@ -3,6 +3,7 @@ import endpoint from '../../backend';
 import $ from 'jquery';
 import ReportViewer from './ReportViewer';
 import './Report.css';
+// import LANG from './langEN';
 
 class ReportSearch extends React.PureComponent {
   constructor(props) {
@@ -29,7 +30,7 @@ class ReportSearch extends React.PureComponent {
       error: () => {
         this.setState({
           reportData: null,
-          error: '样本编号不正确或者报告还未发布'
+          error: LANG["SAMPLE_CODE_ERROR_OR_UNPUBLISHED_REPORT"]
         });
       }
     });
@@ -42,22 +43,22 @@ class ReportSearch extends React.PureComponent {
         <div>
           <ul>
             <li>
-              一般情况下检测机构收到样本后，5个工作日左右出结果。
+              {LANG["SAMPLE_DELIVERED_WAIT_5_DAYS"]}
             </li>
             <li>
-              请您务必确定本人能够承受检测的结果，如有任何问题要及时寻求帮助，您可以通过仁爱网官方客服与我们联系。
-              联系方式：
-              <div>1、登陆www.renaijiance.com点击右下方客服进行咨询（早9点至晚6点，无节假日）</div>
-              <div>2、加客服QQ：3284883815（早9点至晚6点，无节假日）</div>
-              <div>3、客服电话（周一至周五早9点至晚6点）：010-56315141</div>
+              {LANG["WARNING_FOR_RESULT}
+              {LANG["CONTACT_INFO"]}
+              <div>{LANG["CONSULT_INSTRUCTION_1"]}</div>
+              <div>{LANG["CONSULT_INSTRUCTION_2"]}</div>
+              <div>{LANG["CONSULT_INSTRUCTION_3"]}</div>
             </li>
           </ul>
         </div>
         <div className="input-group">
-          <input type="text" ref="number" placeholder="输入样本编号" className="form-control"/>
+          <input type="text" ref="number" placeholder=LANG["ENTER_SAMPLE_CODE"] className="form-control"/>
             <span className="input-group-addon"
                   onClick={this.onClick}
-                  style={{cursor: "pointer"}}>搜索</span>
+                  style={{cursor: "pointer"}}>{LANG["SEARCH"]}</span>
         </div>
         {this.state.reportData && <ReportViewer model={this.state.reportData}/>}
 
