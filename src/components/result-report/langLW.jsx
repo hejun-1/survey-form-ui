@@ -25,14 +25,14 @@ LANG["NOTE"] = "ຫມາຍເຫດ";
 LANG["SAMPLE_CODE_ERROR_OR_UNPUBLISHED_REPORT"] = "ຕົວເລກຕົວຢ່າງແມ່ນບໍ່ຖືກຕ້ອງຫຼືລາຍງານດັ່ງກ່າວຍັງບໍ່ໄດ້ຖືກເຜີຍແຜ່ເທື່ອ";
 LANG["SAMPLE_DELIVERED_WAIT_5_DAYS"] = "ພາຍໃຕ້ສະພາບປົກກະຕິ, ຫຼັງຈາກໄດ້ຮັບຕົວຢ່າງ, ອົງການກວດຈະໃຫ້ຜົນກວດໃນເວລາປະມານ 5 ວັນເຮັດວຽກ.";
 
-LANG["WARNING_FOR_RESULT, ກະລຸນາກວດສອບໃຫ້ແນ່ໃຈ່ວ່າທ່ານສາມາດຍອມຮັບຜົນການກວດໄດ້，ຖ້າທ່ານມີຄຳຖາມຕ້ອງຂໍຄວາມຊ່ວຍເຫຼືອໃຫ້ທັນເວລາ"] ="ທ່ານສາມາດຕິດຕໍ່ພວກເຮົາໄດ້ຕາມຊ່ອງທາງຕໍ່ໄປນີ້"; 
+LANG["WARNING_FOR_RESULT"] = "ກະລຸນາກວດສອບໃຫ້ແນ່ໃຈ່ວ່າທ່ານສາມາດຍອມຮັບຜົນການກວດໄດ້，ຖ້າທ່ານມີຄຳຖາມຕ້ອງຂໍຄວາມຊ່ວຍເຫຼືອໃຫ້ທັນເວລາ,ທ່ານສາມາດຕິດຕໍ່ພວກເຮົາໄດ້ຕາມຊ່ອງທາງຕໍ່ໄປນີ້";
 LANG["CONTACT_INFO"] = "ຂໍ້​ມູນ​ຕິດ​ຕໍ່";
 
-LANG["CONSULT_INSTRUCTION_1"] = "";
+LANG["CONSULT_INSTRUCTION_1"] = "1.xxx.xxxxx.com";
 
-LANG["CONSULT_INSTRUCTION_2"] = "";
+LANG["CONSULT_INSTRUCTION_2"] = "2.xxx-xxxxxxxx";
 
-LANG["CONSULT_INSTRUCTION_3"] = "";
+LANG["CONSULT_INSTRUCTION_3"] = "3.xxxxxxxxx";
 
 LANG["ENTER_SAMPLE_CODE"] = "ໃສ່ໝາຍເລກຕົວຢ່າງ";
 
