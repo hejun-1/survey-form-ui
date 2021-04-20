@@ -46,7 +46,7 @@ class ReportSearch extends React.PureComponent {
               {LANG["SAMPLE_DELIVERED_WAIT_5_DAYS"]}
             </li>
             <li>
-              {LANG["WARNING_FOR_RESULT}
+              {LANG["WARNING_FOR_RESULT"]}
               {LANG["CONTACT_INFO"]}
               <div>{LANG["CONSULT_INSTRUCTION_1"]}</div>
               <div>{LANG["CONSULT_INSTRUCTION_2"]}</div>
@@ -55,7 +55,7 @@ class ReportSearch extends React.PureComponent {
           </ul>
         </div>
         <div className="input-group">
-          <input type="text" ref="number" placeholder=LANG["ENTER_SAMPLE_CODE"] className="form-control"/>
+          <input type="text" ref="number" placeholder={LANG["ENTER_SAMPLE_CODE"]} className="form-control"/>
             <span className="input-group-addon"
                   onClick={this.onClick}
                   style={{cursor: "pointer"}}>{LANG["SEARCH"]}</span>
