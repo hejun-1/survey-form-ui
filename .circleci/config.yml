@@ -1,0 +1,17 @@
+version: 2.1
+jobs:
+  build:
+    docker:
+      - image: circleci/node:11.10.1
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          command: ./buildtask/docker-build.sh
+      - run:
+          command: ./buildtask/docker-push.sh
+workflows:
+  version: 2
+  build_and_deploy:
+    jobs:
+      - build
