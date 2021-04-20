@@ -3,7 +3,7 @@ import endpoint from '../../backend';
 import $ from 'jquery';
 import ReportViewer from './ReportViewer';
 import './Report.css';
-import LANG from './langCN';
+//import LANG from './langCN';
 
 class ReportSearch extends React.PureComponent {
   constructor(props) {
