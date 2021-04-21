@@ -1,5 +1,5 @@
 import React from 'react';
-// import LANG from './langEN';
+import LANG from './langCN';
 
 class ReportViewer extends React.PureComponent {
   constructor(props) {
